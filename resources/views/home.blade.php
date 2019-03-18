@@ -1,376 +1,1830 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('content')
-    <div class="main-panel">
-        <div class="content-wrapper">
-            <div class="row">
-                <div class="col-12">
-              <span class="d-flex align-items-center purchase-popup">
-                <p>Like what you see? Check out our premium version for more.</p>
-                <a href="https://github.com/BootstrapDash/PurpleAdmin-Free-Admin-Template" target="_blank" class="btn ml-auto download-button">Download Free Version</a>
-                <a href="https://www.bootstrapdash.com/product/purple-bootstrap-4-admin-template/" target="_blank" class="btn purchase-button">Upgrade To Pro</a>
-                <i class="mdi mdi-close popup-dismiss"></i>
-              </span>
-                </div>
+    <div class="page-content">
+
+        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+        <div id="portlet-config" class="modal hide">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"></button>
+                <h3>Widget Settings</h3>
             </div>
-            <div class="page-header">
-                <h3 class="page-title">
-              <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                <i class="mdi mdi-home"></i>
-              </span>
-                    Dashboard
-                </h3>
-                <nav aria-label="breadcrumb">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">
-                            <span></span>Overview
-                            <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                        </li>
-                    </ul>
-                </nav>
+            <div class="modal-body"> Widget settings form goes here</div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="content sm-gutter">
+            <div class="page-title">
             </div>
+            <!-- BEGIN DASHBOARD TILES -->
             <div class="row">
-                <div class="col-md-4 stretch-card grid-margin">
-                    <div class="card bg-gradient-danger card-img-holder text-white">
-                        <div class="card-body">
-                            <img src="images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
-                            <h4 class="font-weight-normal mb-3">Weekly Sales
-                                <i class="mdi mdi-chart-line mdi-24px float-right"></i>
-                            </h4>
-                            <h2 class="mb-5">$ 15,0000</h2>
-                            <h6 class="card-text">Increased by 60%</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 stretch-card grid-margin">
-                    <div class="card bg-gradient-info card-img-holder text-white">
-                        <div class="card-body">
-                            <img src="images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
-                            <h4 class="font-weight-normal mb-3">Weekly Orders
-                                <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-                            </h4>
-                            <h2 class="mb-5">45,6334</h2>
-                            <h6 class="card-text">Decreased by 10%</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 stretch-card grid-margin">
-                    <div class="card bg-gradient-success card-img-holder text-white">
-                        <div class="card-body">
-                            <img src="images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
-                            <h4 class="font-weight-normal mb-3">Visitors Online
-                                <i class="mdi mdi-diamond mdi-24px float-right"></i>
-                            </h4>
-                            <h2 class="mb-5">95,5741</h2>
-                            <h6 class="card-text">Increased by 5%</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-7 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="clearfix">
-                                <h4 class="card-title float-left">Visit And Sales Statistics</h4>
-                                <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>
+                <div class="col-md-4 col-vlg-3 col-sm-6">
+                    <div class="tiles green m-b-10">
+                        <div class="tiles-body">
+                            <div class="controller">
+                                <a href="javascript:;" class="reload"></a>
+                                <a href="javascript:;" class="remove"></a>
                             </div>
-                            <canvas id="visit-sale-chart" class="mt-4"></canvas>
+                            <div class="tiles-title text-black">OVERALL SALES</div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <span class="item-title">Overall Visits</span> <span
+                                            class="item-count animate-number semi-bold" data-value="2415"
+                                            data-animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <span class="item-title">Today's</span> <span
+                                            class="item-count animate-number semi-bold" data-value="751"
+                                            data-animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="widget-stats ">
+                                <div class="wrapper last">
+                                    <span class="item-title">Monthly</span> <span
+                                            class="item-count animate-number semi-bold" data-value="1547"
+                                            data-animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="progress transparent progress-small no-radius m-t-20" style="width:90%">
+                                <div class="progress-bar progress-bar-white animate-progress-bar"
+                                     data-percentage="64.8%"></div>
+                            </div>
+                            <div class="description"><span class="text-white mini-description ">4% higher <span
+                                            class="blend">than last month</span></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Traffic Sources</h4>
-                            <canvas id="traffic-chart"></canvas>
-                            <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                <div class="col-md-4 col-vlg-3 col-sm-6">
+                    <div class="tiles blue m-b-10">
+                        <div class="tiles-body">
+                            <div class="controller">
+                                <a href="javascript:;" class="reload"></a>
+                                <a href="javascript:;" class="remove"></a>
+                            </div>
+                            <div class="tiles-title text-black">OVERALL VISITS</div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <span class="item-title">Overall Visits</span> <span
+                                            class="item-count animate-number semi-bold" data-value="15489" data-
+                                            animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <span class="item-title">Today's</span> <span
+                                            class="item-count animate-number semi-bold" data-value="551"
+                                            data-animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="widget-stats ">
+                                <div class="wrapper last">
+                                    <span class="item-title">Monthly</span> <span
+                                            class="item-count animate-number semi-bold" data-value="1450"
+                                            data-animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="progress transparent progress-small no-radius m-t-20" style="width:90%">
+                                <div class="progress-bar progress-bar-white animate-progress-bar"
+                                     data-percentage="54%"></div>
+                            </div>
+                            <div class="description"><span class="text-white mini-description ">4% higher <span
+                                            class="blend">than last month</span></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Recent Tickets</h4>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>
-                                            Assignee
-                                        </th>
-                                        <th>
-                                            Subject
-                                        </th>
-                                        <th>
-                                            Status
-                                        </th>
-                                        <th>
-                                            Last Update
-                                        </th>
-                                        <th>
-                                            Tracking ID
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            <img src="images/faces/face1.jpg" class="mr-2" alt="image">
-                                            David Grey
-                                        </td>
-                                        <td>
-                                            Fund is not recieved
-                                        </td>
-                                        <td>
-                                            <label class="badge badge-gradient-success">DONE</label>
-                                        </td>
-                                        <td>
-                                            Dec 5, 2017
-                                        </td>
-                                        <td>
-                                            WD-12345
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="images/faces/face2.jpg" class="mr-2" alt="image">
-                                            Stella Johnson
-                                        </td>
-                                        <td>
-                                            High loading time
-                                        </td>
-                                        <td>
-                                            <label class="badge badge-gradient-warning">PROGRESS</label>
-                                        </td>
-                                        <td>
-                                            Dec 12, 2017
-                                        </td>
-                                        <td>
-                                            WD-12346
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="images/faces/face3.jpg" class="mr-2" alt="image">
-                                            Marina Michel
-                                        </td>
-                                        <td>
-                                            Website down for one week
-                                        </td>
-                                        <td>
-                                            <label class="badge badge-gradient-info">ON HOLD</label>
-                                        </td>
-                                        <td>
-                                            Dec 16, 2017
-                                        </td>
-                                        <td>
-                                            WD-12347
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="images/faces/face4.jpg" class="mr-2" alt="image">
-                                            John Doe
-                                        </td>
-                                        <td>
-                                            Loosing control on server
-                                        </td>
-                                        <td>
-                                            <label class="badge badge-gradient-danger">REJECTED</label>
-                                        </td>
-                                        <td>
-                                            Dec 3, 2017
-                                        </td>
-                                        <td>
-                                            WD-12348
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                <div class="col-md-4 col-vlg-3 col-sm-6">
+                    <div class="tiles purple m-b-10">
+                        <div class="tiles-body">
+                            <div class="controller">
+                                <a href="javascript:;" class="reload"></a>
+                                <a href="javascript:;" class="remove"></a>
+                            </div>
+                            <div class="tiles-title text-black">SERVER LOAD</div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <span class="item-title">Overall Load</span> <span
+                                            class="item-count animate-number semi-bold" data-value="5695"
+                                            data-animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <span class="item-title">Today's</span> <span
+                                            class="item-count animate-number semi-bold" data-value="568"
+                                            data-animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="widget-stats ">
+                                <div class="wrapper last">
+                                    <span class="item-title">Monthly</span> <span
+                                            class="item-count animate-number semi-bold" data-value="12459"
+                                            data-animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="progress transparent progress-small no-radius m-t-20" style="width:90%">
+                                <div class="progress-bar progress-bar-white animate-progress-bar"
+                                     data-percentage="90%"></div>
+                            </div>
+                            <div class="description"><span class="text-white mini-description ">4% higher <span
+                                            class="blend">than last month</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-vlg-3 visible-xlg visible-sm col-sm-6">
+                    <div class="tiles red m-b-10">
+                        <div class="tiles-body">
+                            <div class="controller">
+                                <a href="javascript:;" class="reload"></a>
+                                <a href="javascript:;" class="remove"></a>
+                            </div>
+                            <div class="tiles-title text-black">OVERALL SALES</div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <span class="item-title">Overall Sales</span> <span
+                                            class="item-count animate-number semi-bold" data-value="5669"
+                                            data-animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <span class="item-title">Today's</span> <span
+                                            class="item-count animate-number semi-bold" data-value="751"
+                                            data-animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="widget-stats ">
+                                <div class="wrapper last">
+                                    <span class="item-title">Monthly</span> <span
+                                            class="item-count animate-number semi-bold" data-value="1547"
+                                            data-animation-duration="700">0</span>
+                                </div>
+                            </div>
+                            <div class="progress transparent progress-small no-radius m-t-20" style="width:90%">
+                                <div class="progress-bar progress-bar-white animate-progress-bar"
+                                     data-percentage="64.8%"></div>
+                            </div>
+                            <div class="description"><span class="text-white mini-description ">4% higher <span
+                                            class="blend">than last month</span></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- END DASHBOARD TILES -->
             <div class="row">
-                <div class="col-12 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Recent Updates</h4>
-                            <div class="d-flex">
-                                <div class="d-flex align-items-center mr-4 text-muted font-weight-light">
-                                    <i class="mdi mdi-account-outline icon-sm mr-2"></i>
-                                    <span>jack Menqu</span>
+                <!-- BEGIN WORLD MAP WIDGET - MAP -->
+                <div class="col-md-8 col-vlg-8 m-b-10">
+                    <div class="row">
+                        <div class="col-md-12" data-sync-height="true">
+                            <div class="col-md-7 col-vlg-8 col-sm-8 no-padding -height">
+                                <div class="tiles green" id="mapplic_demo">
                                 </div>
-                                <div class="d-flex align-items-center text-muted font-weight-light">
-                                    <i class="mdi mdi-clock icon-sm mr-2"></i>
-                                    <span>October 3rd, 2018</span>
-                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="row mt-3">
-                                <div class="col-6 pr-1">
-                                    <img src="images/dashboard/img_1.jpg" class="mb-2 mw-100 w-100 rounded" alt="image">
-                                    <img src="images/dashboard/img_4.jpg" class="mw-100 w-100 rounded" alt="image">
-                                </div>
-                                <div class="col-6 pl-1">
-                                    <img src="images/dashboard/img_2.jpg" class="mb-2 mw-100 w-100 rounded" alt="image">
-                                    <img src="images/dashboard/img_3.jpg" class="mw-100 w-100 rounded" alt="image">
-                                </div>
-                            </div>
-                            <div class="d-flex mt-5 align-items-top">
-                                <img src="images/faces/face3.jpg" class="img-sm rounded-circle mr-3" alt="image">
-                                <div class="mb-0 flex-grow">
-                                    <h5 class="mr-2 mb-2">School Website - Authentication Module.</h5>
-                                    <p class="mb-0 font-weight-light">It is a long established fact that a reader will be distracted by the readable
-                                        content of a page.</p>
-                                </div>
-                                <div class="ml-auto">
-                                    <i class="mdi mdi-heart-outline text-muted"></i>
+                            <div class="col-md-5 col-vlg-4 col-sm-4 no-padding">
+                                <div class="tiles black">
+                                    <div class="tiles-body">
+                                        <h5 class="text-white"><span class="semi-bold">QUICK</span> VIEW</h5>
+                                        <input type="text" placeholder="Search..." class="form-control input-sm m-t-20">
+                                        <div class="m-t-40">
+                                            <div class="widget-stats">
+                                                <div class="wrapper"><span class="item-title">Overall Visits</span>
+                                                    <span class="item-count animate-number semi-bold" data-value="2415"
+                                                          data-animation-duration="700">0</span></div>
+                                            </div>
+                                            <div class="widget-stats">
+                                                <div class="wrapper"><span class="item-title">Today's</span> <span
+                                                            class="item-count animate-number semi-bold" data-value="751"
+                                                            data-animation-duration="700">0</span></div>
+                                            </div>
+                                            <div class="widget-stats hidden-sm">
+                                                <div class="wrapper last"><span class="item-title">Monthly</span> <span
+                                                            class="item-count animate-number semi-bold"
+                                                            data-value="1547" data-animation-duration="700">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="progress transparent progress-small no-radius m-t-20"
+                                                 style="width:90%">
+                                                <div class="progress-bar progress-bar-success animate-progress-bar"
+                                                     data-percentage="64.8%"></div>
+                                            </div>
+                                            <div class="description"><span class="text-white mini-description ">4% higher <span
+                                                            class="blend">than last month</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="chart" style="height:123px"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Project Status</h4>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>
-                                            #
-                                        </th>
-                                        <th>
-                                            Name
-                                        </th>
-                                        <th>
-                                            Due Date
-                                        </th>
-                                        <th>
-                                            Progress
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            Herman Beck
-                                        </td>
-                                        <td>
-                                            May 15, 2015
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            Messsy Adam
-                                        </td>
-                                        <td>
-                                            Jul 01, 2015
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            3
-                                        </td>
-                                        <td>
-                                            John Richards
-                                        </td>
-                                        <td>
-                                            Apr 12, 2015
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            4
-                                        </td>
-                                        <td>
-                                            Peter Meggik
-                                        </td>
-                                        <td>
-                                            May 15, 2015
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            Edward
-                                        </td>
-                                        <td>
-                                            May 03, 2015
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            Ronald
-                                        </td>
-                                        <td>
-                                            Jun 05, 2015
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                <!-- END WORLD MAP WIDGET - CRAFT MAP -->
+                <!-- BEGIN REALTIME SALES GRAPH -->
+                <div class="col-md-4 col-vlg-4 m-b-10 ">
+                    <div class="tiles white">
+                        <div class="row">
+                            <div class="sales-graph-heading">
+                                <div class="col-md-5 col-sm-5">
+                                    <h5 class="no-margin">You have earned</h5>
+                                    <h4><span class="item-count animate-number semi-bold" data-value="21451"
+                                              data-animation-duration="700">0</span> USD</h4>
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <p class="semi-bold">TODAY</p>
+                                    <h4><span class="item-count animate-number semi-bold" data-value="451"
+                                              data-animation-duration="700">0</span> USD</h4>
+                                </div>
+                                <div class="col-md-4 col-sm-3">
+                                    <p class="semi-bold">THIS MONTH</p>
+                                    <h4><span class="item-count animate-number semi-bold" data-value="8514"
+                                              data-animation-duration="700">0</span> USD</h4>
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
                         </div>
+                        <h5 class="semi-bold m-t-30 m-l-30">LAST SALE</h5>
+                        <table class="table no-more-tables m-t-20 m-l-20 m-b-30">
+                            <thead style="display:none">
+                            <tr>
+                                <th style="width:9%">Project Name</th>
+                                <th style="width:22%">Description</th>
+                                <th style="width:6%">Price</th>
+                                <th style="width:1%"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="v-align-middle bold text-success">25601</td>
+                                <td class="v-align-middle"><span class="muted">Redesign project template</span></td>
+                                <td><span class="muted bold text-success">$4,500</span></td>
+                                <td class="v-align-middle"></td>
+                            </tr>
+                            <tr>
+                                <td class="v-align-middle bold text-success">25601</td>
+                                <td class="v-align-middle"><span class="muted">Redesign project template</span></td>
+                                <td><span class="muted bold text-success">$4,500</span></td>
+                                <td class="v-align-middle"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div id="sales-graph"></div>
+                    </div>
+                </div>
+                <!-- END REALTIME SALES GRAPH -->
+            </div>
+            <div class="row">
+                <!-- BEGIN BLOG POST BIG IMAGE WIDGET -->
+                <div class="col-md-6 col-vlg-4 col-sm-12 ">
+                    <div class="tiles overflow-hidden full-height tiles-overlay-hover m-b-10 widget-item">
+                        <div class="controller overlay right">
+                            <a href="javascript:;" class="reload"></a>
+                            <a href="javascript:;" class="remove"></a>
+                        </div>
+                        <div class="overlayer tiles-overlay auto blue">
+                            <div class="overlayer-wrapper  p-t-20 p-l-20 p-r-20 p-b-20"><i
+                                        class="fa fa-map-marker fa-2x"></i>
+                                <p class="p-t-20 text-white-opacity">21 Jan</p>
+                                <h3 class="text-white">New Year <span class="semi-bold">UI Bundle <br>
+                  </span> now on webarch</h3>
+                                <p class="p-t-20"><span class="bold">214</span> Comments <span
+                                            class="m-l-10 bold">24k</span> Likes</p>
+                            </div>
+                        </div>
+                        <div class="overlayer bottom-left fullwidth">
+                            <div class="overlayer-wrapper">
+                                <div class="tiles gradient-grey p-l-20 p-r-20 p-b-20 p-t-20"><a href="#"
+                                                                                                class="hashtags transparent">
+                                        #citymax </a> <a href="#" class="hashtags transparent"> #new york city </a> <a
+                                            href="#" class="hashtags transparent"> #amazing </a>
+                                    <p class="p-t-10 p-b-10 "><span class="bold">Jane Smith, John Smith, David Jester, pepper</span>
+                                        post and 214 others like this.</p>
+                                    <div class="profile-img-wrapper inline m-r-5">
+                                        <img src="assets/img/profiles/avatar_small.jpg" alt=""
+                                             data-src="assets/img/profiles/avatar_small.jpg"
+                                             data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="35"
+                                             height="35">
+                                    </div>
+                                    <input type="text" class="dark m-r-5" id="txtinput1" placeholder="Write a comment"
+                                           style="width:60%">
+                                    <button type="button" class="btn btn-primary">Joing Group</button>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="assets/img/others/9.jpg" data-src="assets/img/others/9.jpg"
+                             data-src-retina="assets/img/others/rob.jpg" alt=""
+                             class="image-responsive-width hover-effect-img">
+                    </div>
+                </div>
+                <!-- END BLOG POST BIG IMAGE WIDGET -->
+                <!-- BEGIN ANIMATED TILES -->
+                <div class="col-md-6 col-vlg-4 col-sm-12">
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 m-b-10" data-aspect-ratio="true">
+                            <div class="live-tile slide ha " data-speed="750" data-delay="3000" data-mode="carousel">
+                                <div class="slide-front ha tiles adjust-text">
+                                    <div class="p-t-20 p-l-20 p-r-20 p-b-20"><i class="fa fa-map-marker fa-2x"></i>
+                                        <p class="text-white-opacity p-t-10">21 Jan</p>
+                                        <h3 class="text-white no-margin">New Year <span class="semi-bold">UI Bundle <br>
+                      </span> now on webarch</h3>
+                                    </div>
+                                </div>
+                                <div class="slide-back ha tiles adjust-text">
+                                    <div class="p-t-20 p-l-20 p-r-20 p-b-20"><i class="fa fa-map-marker fa-2x"></i>
+                                        <p class="text-white-opacity p-t-10">21 Jan</p>
+                                        <h3 class="text-white no-margin">New Year <span class="semi-bold">UI Bundle <br>
+                      </span> now on webarch</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END ANIMATED TILE -->
+                        <!-- BEGIN ANIMATED TILE -->
+                        <div class="col-md-6 col-sm-6 m-b-10" data-aspect-ratio="true">
+                            <div class="live-tile slide ha " data-speed="750" data-delay="4000" data-mode="carousel">
+                                <div class="slide-front ha tiles blue ">
+                                    <div class="p-t-20 p-l-20 p-r-20 p-b-20">
+                                        <h4 class="text-white no-margin custom-line-height">“Just <span
+                                                    class="semi-bold">Completed</span> the <span class="semi-bold">Heart walk</span>
+                                            advertiing
+                                            campaign”</h4>
+                                    </div>
+                                    <div class="overlayer bottom-left fullwidth">
+                                        <div class="overlayer-wrapper">
+                                            <div class="user-comment-wrapper">
+                                                <div class="profile-wrapper"><img
+                                                            src="assets/img/profiles/avatar_small.jpg" alt=""
+                                                            data-src="assets/img/profiles/avatar_small.jpg"
+                                                            data-src-retina="assets/img/profiles/avatar_small2x.jpg"
+                                                            width="35" height="35"></div>
+                                                <div class="comment">
+                                                    <div class="user-name text-white "><span class="bold"> David</span>
+                                                        Cooper
+                                                    </div>
+                                                    <p class="text-white-opacity">@ Revox</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slide-back ha tiles blue">
+                                    <div class="user-comment-wrapper m-t-20">
+                                        <div class="profile-wrapper"><img src="assets/img/profiles/d.jpg" alt=""
+                                                                          data-src="assets/img/profiles/d.jpg"
+                                                                          data-src-retina="assets/img/profiles/d2x.jpg"
+                                                                          width="35" height="35"></div>
+                                        <div class="comment">
+                                            <div class="user-name text-white "><span class="bold"> Jane</span> Smith
+                                            </div>
+                                            <p class="text-white-opacity">@ Revox</p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="overlayer bottom-left fullwidth">
+                                        <div class="overlayer-wrapper">
+                                            <div class="p-t-20 p-l-20 p-r-20 p-b-20">
+                                                <h4 class="text-white no-margin custom-line-height">“Just <span
+                                                            class="semi-bold">Completed</span> the <span
+                                                            class="semi-bold">Heart walk</span> adverting
+                                                    campaign”</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END ANIMATED TILE -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6  col-sm-6 m-b-10" data-aspect-ratio="true">
+                            <div class="live-tile slide ha" data-speed="750" data-delay="4500" data-mode="carousel">
+                                <div class="slide-front ha tiles green p-t-20 p-l-20 p-r-20 p-b-20">
+                                    <h1 class="semi-bold text-white">15% <i class="icon-custom-up icon-custom-2x"></i>
+                                    </h1>
+                                    <div class="overlayer bottom-left fullwidth">
+                                        <div class="overlayer-wrapper">
+                                            <div class="p-t-20 p-l-20 p-r-20 p-b-20">
+                                                <p class="bold">Webarch Dashboard</p>
+                                                <p>2,567 USD <span class="m-l-10"><i
+                                                                class="fa fa-sort-desc"></i> 2%</span></p>
+                                                <p class="bold p-t-15">Front-end Design</p>
+                                                <p>1,420 USD <span class="m-l-10"><i
+                                                                class="fa fa-sort-desc"></i> 1%</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slide-back ha tiles green">
+                                    <div class="p-t-20 p-l-20 p-r-20 p-b-20">
+                                        <h5 class="text-white semi-bold no-margin p-b-5">Today Sale's</h5>
+                                        <h3 class="text-white no-margin">450 <span class="semi-bold">USD</span></h3>
+                                        Last Sale 23.45 USD
+                                    </div>
+                                    <div class="overlayer bottom-left fullwidth">
+                                        <div class="overlayer-wrapper">
+                                            <div id="sales-sparkline"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BEGIN ANIMATED TILE -->
+                        <div class="col-md-6  col-sm-6 m-b-10" data-aspect-ratio="true">
+                            <div class="live-tile slide ha " data-speed="750" data-delay="6000" data-mode="carousel">
+                                <div class="slide-front ha tiles green ">
+                                    <div class="overlayer bottom-left fullwidth">
+                                        <div class="overlayer-wrapper">
+                                            <div class="tiles gradient-black p-l-20 p-r-20 p-b-20 p-t-20">
+                                                <h4 class="text-white semi-bold no-margin">RUN AWAY GO </h4>
+                                                <h5 class="text-white semi-bold ">Queen's favourite</h5>
+                                                <p class="text-white semi-bold no-margin"><i
+                                                            class="icon-custom-up "></i> Read More</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img src="assets/img/others/11.png" alt=""
+                                         class="image-responsive-width xs-image-responsive-width"></div>
+                                <div class="slide-back ha tiles green">
+                                    <div class="overlayer bottom-left fullwidth">
+                                        <div class="overlayer-wrapper">
+                                            <div class="tiles gradient-black p-l-20 p-r-20 p-b-20 p-t-20">
+                                                <h5 class="text-white semi-bold ">King's favourite</h5>
+                                                <p class="text-white semi-bold no-margin"><i
+                                                            class="icon-custom-up "></i> Read More</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img src="assets/img/others/cover.jpg" alt=""
+                                         class="image-responsive-width xs-image-responsive-width">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END ANIMATED TILE -->
+                    </div>
+                </div>
+                <!-- END ANIMATED TILES -->
+                <!-- START ONLY VISIBLE FOR 1600 AND ABOVE -->
+                <div class="col-vlg-4 visible-xlg">
+                    <!-- BEGIN MARKET SALES WIDGET -->
+                    <div class="row tiles-container">
+                        <div class="col-md-12">
+                            <div class="tiles white" data-aspect-ratio="true">
+                                <div class="col-md-7 b-grey b-r no-padding" style="height:100%">
+                                    <div class="p-l-20 p-r-20 p-b-10 p-t-10 b-b b-grey">
+                                        <h5 class="text-success bold inline">MARKET</h5>
+                                        <h5 class="text-black bold inline m-l-10">DOW</h5>
+                                        <div class=""><i class="fa fa-sort-asc fa-2x text-error inline p-b-10"
+                                                         style="vertical-align: super;"></i>
+                                            <h1 class="text-error bold inline no-margin"> 15,580.11</h1>
+                                        </div>
+                                    </div>
+                                    <div class="p-l-20 p-r-20 p-b-10 p-t-10 b-b b-grey">
+                                        <div class="pull-left">
+                                            <p class="text-success">Open</p>
+                                            <p class="text-black">16:203.26</p>
+                                        </div>
+                                        <div class="pull-right">
+                                            <p class="text-success">Day Range</p>
+                                            <p class="text-black">15,568.11 - 16,203.25</p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="overlayer bottom-left fullwidth">
+                                        <div class="overlayer-wrapper">
+                                            <div class="" id="shares-chart-01" style="width:100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 no-padding full-height">
+                                    <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                        <h4 class="text-black ">Watchlist</h4>
+                                        <input type="text" class="dark form-control" id="txtinput2"
+                                               placeholder="Search">
+                                    </div>
+                                    <div class="market-share-widget-innerscroller">
+                                        <div class="scroller scrollbar-dynamic" data-height="100%"
+                                             data-always-visible="1">
+                                            <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                                <div class="pull-left">
+                                                    <p class="small-text">GMY</p>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <p class="small-text">GMY & SKR 100</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    <h4 class="semi-bold">18,500.11</h4>
+                                                </div>
+                                                <div class="pull-right" style="line-height: 27px;"><span
+                                                            class="label label-important"
+                                                            style="vertical-align: bottom;">-318.2</span></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                                <div class="pull-left">
+                                                    <p class="small-text">KPM</p>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <p class="small-text">KPMG 350</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    <h4 class="semi-bold">15,425.25</h4>
+                                                </div>
+                                                <div class="pull-right" style="line-height: 27px;"><span
+                                                            class="label label-success" style="vertical-align: bottom;">+318.2</span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                                <div class="pull-left">
+                                                    <p class="small-text">PTR</p>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <p class="small-text">PRT & SPR 245</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    <h4 class="semi-bold">11,540.11</h4>
+                                                </div>
+                                                <div class="pull-right" style="line-height: 27px;"><span
+                                                            class="label label-important"
+                                                            style="vertical-align: bottom;">-345.2</span></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                                <div class="pull-left">
+                                                    <p class="small-text">HGM</p>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <p class="small-text">HGM & POR 450</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    <h4 class="semi-bold">9,500</h4>
+                                                </div>
+                                                <div class="pull-right" style="line-height: 27px;"><span
+                                                            class="label label-success" style="vertical-align: bottom;">+100.2</span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                                <div class="pull-left">
+                                                    <p class="small-text">MKR</p>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <p class="small-text">MKR & SPR 547</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    <h4 class="semi-bold">15,855.11</h4>
+                                                </div>
+                                                <div class="pull-right" style="line-height: 27px;"><span
+                                                            class="label label-important"
+                                                            style="vertical-align: bottom;">-318.2</span></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END MARKET SALES WIDGET -->
+                </div>
+                <!-- END ONLY VISIBLE FOR 1600 AND ABOVE -->
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-vlg-4">
+                    <!-- BEGIN WEATHER DETAIL VIEW WIDGET -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tiles white m-b-10 clearfix">
+                                <div class="col-md-7  col-sm-7 b-grey b-r ">
+                                    <h4 class="semi-bold text-center b-grey b-b no-margin p-t-20 p-b-10">California
+                                        USA</h4>
+                                    <div class="b-grey b-b">
+                                        <h4 class="semi-bold text-center text-error">Sunday</h4>
+                                        <h1 class="semi-bold text-center text-error">
+                                            32&deg;
+                                        </h1>
+                                        <h5 class="text-center text-error">partly cloudy</h5>
+                                        <div class="row auto m-t-10 m-b-10">
+                                            <div class="col-md-3 col-sm-3 col-xs-3  no-padding col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+                                                <canvas id="widget-2-cloudy-big" width="48" height="48"
+                                                        class="h-align-middle "></canvas>
+                                            </div>
+                                            <div class="col-md-5 col-sm-5 col-xs-5 no-padding">
+                                                <div class="m-t-10">
+                                                    <div class="pull-left m-l-5">
+                                                        <canvas id="white_widget_13" width="16" height="16"
+                                                                class="inline"></canvas>
+                                                        <div class="inline">
+                                                            <h5 class="semi-bold no-margin ">54</h5>
+                                                            <p class="bold text-extra-small ">MPH</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pull-right m-r-10">
+                                                        <canvas id="white_widget_14" width="16" height="16"
+                                                                class="inline"></canvas>
+                                                        <div class="inline">
+                                                            <h5 class="semi-bold no-margin ">53</h5>
+                                                            <p class="bold text-extra-small ">MM</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row auto m-t-15">
+                                        <div class="col-md-2 col-sm-2 col-xs-2 no-padding col-md-offset-1 col-xs-offset-1 b-grey b-r">
+                                            <p class="text-center no-margin">11:30</p>
+                                            <p class="text-center no-margin">PM</p>
+                                            <canvas id="white_widget_01" width="20" height="20"
+                                                    class="h-align-middle m-t-10"></canvas>
+                                            <h5 class="semi-bold text-center text-error">32&deg;</h5>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-2 no-padding b-grey b-r">
+                                            <div class="text-center">11:30</div>
+                                            <div class="text-center">PM</div>
+                                            <canvas id="white_widget_02" width="20" height="20"
+                                                    class="h-align-middle m-t-10"></canvas>
+                                            <h5 class="semi-bold text-center text-error">32&deg;</h5>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-2 no-padding b-grey b-r">
+                                            <div class="text-center">11:30</div>
+                                            <div class="text-center">PM</div>
+                                            <canvas id="white_widget_03" width="20" height="20"
+                                                    class="h-align-middle m-t-10"></canvas>
+                                            <h5 class="semi-bold text-center text-error">32&deg;</h5>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-2 no-padding b-grey b-r">
+                                            <div class="text-center">11:30</div>
+                                            <div class="text-center">PM</div>
+                                            <canvas id="white_widget_04" width="20" height="20"
+                                                    class="h-align-middle m-t-10"></canvas>
+                                            <h5 class="semi-bold text-center text-error">32&deg;</h5>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-2 no-padding b-grey">
+                                            <div class="text-center">11:30</div>
+                                            <div class="text-center">PM</div>
+                                            <canvas id="white_widget_05" width="20" height="20"
+                                                    class="h-align-middle m-t-10"></canvas>
+                                            <h5 class="semi-bold text-center text-error">32&deg;</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-sm-5 tiles grey">
+                                    <div class=" p-t-25 p-r-10 p-l-10 p-b-15">
+                                        <div class="p-b-10 m-b-10 b-grey b-b">
+                                            <div class="pull-left"><span
+                                                        class="bold text-black m-r-15 text-right">Sun</span>
+                                                <canvas id="white_widget_06" width="20" height="20"
+                                                        class="inline m-l-10"></canvas>
+                                            </div>
+                                            <div class="pull-right"><span class="semi-bold text-grey">32 - 28</span>
+                                                <span class="bold text-error">C&deg; </span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="p-b-10 m-b-10 b-grey b-b">
+                                            <div class="pull-left"><span class="bold  text-black m-r-15">Mon</span>
+                                                <canvas id="white_widget_07" width="20" height="20"
+                                                        class="inline m-l-10"></canvas>
+                                            </div>
+                                            <div class="pull-right"><span class="semi-bold text-grey">32 - 28</span>
+                                                <span class="bold text-error">C&deg; </span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="p-b-10 m-b-10 b-grey b-b">
+                                            <div class="pull-left"><span class="bold  text-black m-r-15">Tue</span>
+                                                <canvas id="white_widget_08" width="20" height="20"
+                                                        class="inline m-l-10"></canvas>
+                                            </div>
+                                            <div class="pull-right"><span class="semi-bold text-grey">32 - 28</span>
+                                                <span class="bold text-error">C&deg; </span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="p-b-10 m-b-10 b-grey b-b">
+                                            <div class="pull-left"><span class="bold  text-black m-r-5">Wed</span>
+                                                <canvas id="white_widget_09" width="20" height="20"
+                                                        class="inline m-l-10"></canvas>
+                                            </div>
+                                            <div class="pull-right"><span class="semi-bold text-grey">32 - 28</span>
+                                                <span class="bold text-error">C&deg; </span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="p-b-10 m-b-10 b-grey b-b">
+                                            <div class="pull-left"><span class="bold  text-black m-r-5">Thur</span>
+                                                <canvas id="white_widget_10" width="20" height="20"
+                                                        class="inline m-l-10"></canvas>
+                                            </div>
+                                            <div class="pull-right"><span class="semi-bold text-grey">32 - 28</span>
+                                                <span class="bold text-error">C&deg; </span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="p-b-10 m-b-10 b-grey b-b">
+                                            <div class="pull-left"><span class="bold  text-black m-r-15">Fri</span>
+                                                <canvas id="white_widget_11" width="20" height="20"
+                                                        class="inline m-l-10"></canvas>
+                                            </div>
+                                            <div class="pull-right"><span class="semi-bold text-grey">32 - 28</span>
+                                                <span class="bold text-error">C&deg; </span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="p-b-10 m-b-10 b-grey">
+                                            <div class="pull-left"><span class="bold  text-black m-r-10">Sat</span>
+                                                <canvas id="white_widget_12" width="20" height="20"
+                                                        class="inline m-l-10"></canvas>
+                                            </div>
+                                            <div class="pull-right"><span class="semi-bold text-grey">32 - 28</span>
+                                                <span class="bold text-error">C&deg; </span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END WEATHER DETAIL VIEW WIDGET -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-7 m-b-5 col-lg-6 col-sm-6">
+                                <!-- BEGIN MINI WEATHER WIDGET -->
+                                <div class="row  tiles-container">
+                                    <div class="col-md-5  col-xs-5 no-padding">
+                                        <div class="tiles red p-t-20">
+                                            <canvas id="widget-partly-cloudy-day" width="64" height="64"
+                                                    class=" h-align-middle"></canvas>
+                                            <h6 class="bold text-white text-center p-b-15">WEDNESDAY</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-xs-7 tiles white text-center">
+                                        <h2 class="semi-bold text-error weather-widget-big-text no-margin p-t-20 p-b-10">
+                                            34&deg;</h2>
+                                        <div class="tiles-title blend m-b-5">CURRENTLY</div>
+                                        <div class="pull-left m-l-15 ">
+                                            <canvas id="widget-wind" width="16" height="16" class="inline"></canvas>
+                                            <div class="inline">
+                                                <h5 class="semi-bold no-margin ">54</h5>
+                                                <p class="bold text-extra-small ">MPH</p>
+                                            </div>
+                                        </div>
+                                        <div class="pull-right m-r-25">
+                                            <canvas id="widget-sleet" width="16" height="16" class="inline"></canvas>
+                                            <div class="inline">
+                                                <h5 class="semi-bold no-margin ">53</h5>
+                                                <p class="bold text-extra-small ">MM</p>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <!-- END WEATHER DETAIL VIEW WIDGET -->
+                            </div>
+                            <div class="col-md-5 col-lg-6 col-sm-6">
+                                <!-- BEGIN MINI WEATHER WIDGET -->
+                                <div class="row  tiles-container">
+                                    <div class="col-md-7 col-xs-7">
+                                        <div class="tiles white text-center">
+                                            <h2 class="semi-bold text-primary weather-widget-big-text no-margin p-t-35 p-b-10">
+                                                16&deg;</h2>
+                                            <div class="tiles-title blend p-b-25">CURRENTLY</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-xs-5 no-padding">
+                                        <div class="tiles blue p-t-20">
+                                            <canvas id="widget-partly-rainy-day" width="64" height="64"
+                                                    class=" h-align-middle"></canvas>
+                                            <h6 class="bold text-white text-center p-b-15">MONDAY</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END WEATHER DETAIL VIEW WIDGET -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 m-b-10">
+                            <!-- BEGIN SALES WIDGET WITH FLOT CHART -->
+                            <div class="tiles white add-margin">
+                                <div class="p-t-20 p-l-20 p-r-20 p-b-20">
+                                    <div class="row b-grey b-b xs-p-b-20">
+                                        <div class="col-md-4 col-sm-4">
+                                            <h4 class="text-black semi-bold">Total Income</h4>
+                                            <h3 class="text-success semi-bold">$15,354</h3>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                            <div class="m-t-20">
+                                                <h5 class="text-black semi-bold">Total due</h5>
+                                                <h4 class="text-success semi-bold">$4,653</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5">
+                                            <div class="m-t-20">
+                                                <input type="text" class="dark form-control" id="txtinput3"
+                                                       placeholder="Search">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row b-grey">
+                                        <div class="col-md-3 col-sm-3">
+                                            <div class="m-t-10">
+                                                <p class="text-success">Open</p>
+                                                <p class="text-black">16:203.26</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="m-t-10">
+                                                <p class="text-success">Day Range</p>
+                                                <p class="text-black">01.12.13 - 01.01.14</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5">
+                                            <div class="m-t-10">
+                                                <div class="pull-left">
+                                                    Cash
+                                                </div>
+                                                <div class="pull-right">
+                                                    <span class="text-success">$10,525</span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    Visa Classic
+                                                </div>
+                                                <div class="pull-right">
+                                                    <span class="text-success">$5,989</span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tiles grey" id="chart_1" style="height: 260px;width:100%">
+                                </div>
+                            </div>
+                            <!-- END SALES WIDGET WITH FLOT CHART -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-vlg-8">
+                    <div class="row tiles-container">
+                        <div class="col-md-12">
+                            <div class="tiles white hidden-xlg m-b-10 clearfix">
+                                <div class="col-md-7 b-grey b-r no-padding col-sm-7" style="height:520px">
+                                    <div class="p-l-20 p-r-20 p-b-10 p-t-10 b-b b-grey">
+                                        <h5 class="text-success bold inline">MARKET</h5>
+                                        <h5 class="text-black bold inline m-l-10">DOW</h5>
+                                        <div class=""><i class="fa fa-sort-asc fa-2x text-error inline p-b-10"
+                                                         style="vertical-align: super;"></i>
+                                            <h1 class="text-error bold inline no-margin"> 15,580.11</h1>
+                                        </div>
+                                    </div>
+                                    <div class="p-l-20 p-r-20 p-b-10 p-t-10 b-b b-grey">
+                                        <div class="pull-left">
+                                            <p class="text-success">Open</p>
+                                            <p class="text-black">16:203.26</p>
+                                        </div>
+                                        <div class="pull-right">
+                                            <p class="text-success">Day Range</p>
+                                            <p class="text-black">15,568.11 - 16,203.25</p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="overlayer bottom-left fullwidth">
+                                        <div class="overlayer-wrapper">
+                                            <div class="" id="shares-chart-02" style="width:100%;height:220px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 no-padding col-sm-5 full-height">
+                                    <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                        <h4 class="text-black ">Watchlist</h4>
+                                        <input type="text" class="dark form-control" id="textinput4"
+                                               placeholder="Search">
+                                    </div>
+                                    <div class="market-share-widget-innerscroller">
+                                        <div class="scroller scrollbar-dynamic" data-height="100%"
+                                             data-always-visible="1">
+                                            <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                                <div class="pull-left">
+                                                    <p class="small-text">GMY</p>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <p class="small-text">GMY & SKR 100</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    <h4 class="semi-bold">18,500.11</h4>
+                                                </div>
+                                                <div class="pull-right" style="line-height: 27px;"><span
+                                                            class="label label-important"
+                                                            style="vertical-align: bottom;">-318.2</span></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                                <div class="pull-left">
+                                                    <p class="small-text">KPM</p>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <p class="small-text">KPMG 350</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    <h4 class="semi-bold">15,425.25</h4>
+                                                </div>
+                                                <div class="pull-right" style="line-height: 27px;"><span
+                                                            class="label label-success" style="vertical-align: bottom;">+318.2</span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                                <div class="pull-left">
+                                                    <p class="small-text">PTR</p>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <p class="small-text">PRT & SPR 245</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    <h4 class="semi-bold">11,540.11</h4>
+                                                </div>
+                                                <div class="pull-right" style="line-height: 27px;"><span
+                                                            class="label label-important"
+                                                            style="vertical-align: bottom;">-345.2</span></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                                <div class="pull-left">
+                                                    <p class="small-text">HGM</p>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <p class="small-text">HGM & POR 450</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    <h4 class="semi-bold">9,500</h4>
+                                                </div>
+                                                <div class="pull-right" style="line-height: 27px;"><span
+                                                            class="label label-success" style="vertical-align: bottom;">+100.2</span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="p-l-15 p-r-15 p-b-10 p-t-10 b-b b-grey">
+                                                <div class="pull-left">
+                                                    <p class="small-text">MKR</p>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <p class="small-text">MKR & SPR 547</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    <h4 class="semi-bold">15,855.11</h4>
+                                                </div>
+                                                <div class="pull-right" style="line-height: 27px;"><span
+                                                            class="label label-important"
+                                                            style="vertical-align: bottom;">-318.2</span></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row hidden-xlg">
+                        <div class="col-md-12 m-b-10">
+                            <!-- BEGIN SALES WIDGET WITH FLOT CHART 2-->
+                            <div class="tiles white add-margin">
+                                <div class="p-t-20 p-l-20 p-r-20 p-b-20">
+                                    <div class="row b-grey b-b xs-p-b-20">
+                                        <div class="col-md-4 col-sm-4">
+                                            <h4 class="text-black semi-bold">Total Visits</h4>
+                                            <h3 class="text-error semi-bold">25,850</h3>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                            <div class="m-t-20">
+                                                <h5 class="text-black semi-bold">Today</h5>
+                                                <h4 class="text-error semi-bold">1,900</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5">
+                                            <div class="m-t-20">
+                                                <input type="text" class="dark form-control" id="txtinput4"
+                                                       placeholder="Search">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row b-grey">
+                                        <div class="col-md-3 col-sm-3">
+                                            <div class="m-t-10">
+                                                <p class="text-error">Open</p>
+                                                <p class="text-black">15:25:56</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="m-t-10">
+                                                <p class="text-error">Day Range</p>
+                                                <p class="text-black">01.02.2014 - 01.1.2015</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5">
+                                            <div class="m-t-10">
+                                                <div class="pull-left">
+                                                    Cash
+                                                </div>
+                                                <div class="pull-right">
+                                                    <span class="text-error">$10,525</span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="pull-left">
+                                                    Visa Classic
+                                                </div>
+                                                <div class="pull-right">
+                                                    <span class="text-error">$5,989</span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tiles grey" id="sales_chart_alt"
+                                     style="height: 260px;position: relative;width:100%"></div>
+                            </div>
+                            <!-- END SALES WIDGET WITH FLOT CHART -->
+                        </div>
+                    </div>
+                    <div class="row visible-xlg">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="row ">
+                                <!-- BEGIN BLOG POST SIMPLE-->
+                                <div class="col-md-12 m-b-10">
+                                    <div class="widget-item ">
+                                        <div class="controller overlay right">
+                                            <a href="javascript:;" class="reload"></a>
+                                            <a href="javascript:;" class="remove"></a>
+                                        </div>
+                                        <div class="tiles green " style="max-height:345px">
+                                            <div class="tiles-body">
+                                                <h3 class="text-white m-t-50 m-b-30 m-r-20"> Webarch <span
+                                                            class="semi-bold">UI Bundle
+							highly customizable UI
+							elements</span></h3>
+                                                <div class="overlayer bottom-right fullwidth">
+                                                    <div class="overlayer-wrapper">
+                                                        <div class=" p-l-20 p-r-20 p-b-20 p-t-20">
+                                                            <div class="pull-right"><a href="#"
+                                                                                       class="hashtags transparent">
+                                                                    #Art Design </a></div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="tiles white ">
+                                            <div class="tiles-body">
+                                                <div class="row">
+                                                    <div class="user-comment-wrapper pull-left">
+                                                        <div class="profile-wrapper"><img
+                                                                    src="assets/img/profiles/avatar_small.jpg" alt=""
+                                                                    data-src="assets/img/profiles/avatar_small.jpg"
+                                                                    data-src-retina="assets/img/profiles/avatar_small2x.jpg"
+                                                                    width="35" height="35"></div>
+                                                        <div class="comment">
+                                                            <div class="user-name text-black bold"> David <span
+                                                                        class="semi-bold">Cooper</span></div>
+                                                            <div class="preview-wrapper">@ revox</div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="pull-right m-r-20"><span
+                                                                class="bold text-black small-text">24m</span></div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="p-l-15 p-t-10 p-r-20">
+                                                        <p>The attention to detail and the end product is stellar! I
+                                                            enjoyed the process </p>
+                                                        <div class="post p-t-10 p-b-10">
+                                                            <ul class="action-bar no-margin p-b-20 ">
+                                                                <li><a href="#" class="muted bold"><i
+                                                                                class="fa fa-comment  m-r-10"></i>1584</a>
+                                                                </li>
+                                                                <li><a href="#" class="text-error bold"><i
+                                                                                class="fa fa-heart  m-r-10"></i>47k</a>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END BLOG POST SIMPLE-->
+                            </div>
+                            <div class="row">
+                                <!-- BEGIN BLOG POST WITH CAROUSEL IMAGE -->
+                                <div class="col-md-12 m-b-10">
+                                    <div class="widget-item ">
+                                        <div class="controller overlay right">
+                                            <a href="javascript:;" class="reload"></a>
+                                            <a href="javascript:;" class="remove"></a>
+                                        </div>
+                                        <div class="tiles white p-t-15">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="profile-img-wrapper pull-left m-l-10">
+                                                        <div class=" p-r-10">
+                                                            <img src="assets/img/profiles/c.jpg" alt=""
+                                                                 data-src="assets/img/profiles/c.jpg"
+                                                                 data-src-retina="assets/img/profiles/c2x.jpg"
+                                                                 width="35" height="35"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <div class="user-name text-black bold large-text"> John <span
+                                                                class="semi-bold">Smith</span></div>
+                                                    <div class="preview-wrapper">shared a picture with <span
+                                                                class="bold">Jane Smith</span>.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="image-demo-carl-2" class="m-t-15 owl-carousel owl-theme">
+                                                <div class="item"><img src="assets/img/others/1.jpg" alt=""></div>
+                                                <div class="item"><img src="assets/img/others/2.jpg" alt=""></div>
+                                            </div>
+                                            <div class="post p-b-15 p-t-15 p-l-15 b-b b-grey">
+                                                <ul class="action-bar no-margin ">
+                                                    <li><a href="#" class="muted"><i class="fa fa-comment m-r-5"></i> 24</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="text-error bold"> <i
+                                                                    class="fa fa-heart-o  m-r-5"></i> 5</a>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <p class="p-t-10 p-b-10 p-l-15 p-r-15"><span class="bold">Jane Smith, John Smith, David Jester, pepper</span>
+                                                post and 214 others like this.</p>
+                                            <div class="clearfix"></div>
+                                            <div class="p-b-10 p-l-10 p-r-10">
+                                                <div class="profile-img-wrapper pull-left"><img
+                                                            src="assets/img/profiles/avatar_small.jpg" alt=""
+                                                            data-src="assets/img/profiles/avatar_small.jpg"
+                                                            data-src-retina="assets/img/profiles/avatar_small2x.jpg"
+                                                            width="35" height="35"></div>
+                                                <div class="inline pull-right" style="width:86%">
+                                                    <div class="input-group transparent ">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="Write a comment">
+                                                        <span class="input-group-addon"> <i
+                                                                    class="fa fa-camera"></i> </span></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END BLOG POST WITH CAROUSEL IMAGE -->
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 hidden-sm">
+                            <div class="row">
+                                <!-- BEGIN BLOG POST WITH IMAGE -->
+                                <div class="col-md-12 m-b-10">
+                                    <div class="widget-item ">
+                                        <div class="controller overlay right">
+                                            <a href="javascript:;" class="reload"></a>
+                                            <a href="javascript:;" class="remove"></a>
+                                        </div>
+                                        <div class="tiles green  overflow-hidden full-height" style="max-height:214px">
+                                            <div class="overlayer bottom-right fullwidth">
+                                                <div class="overlayer-wrapper">
+                                                    <div class="tiles gradient-black p-l-20 p-r-20 p-b-20 p-t-20">
+                                                        <div class="pull-right"><a href="#"
+                                                                                   class="hashtags transparent"> #Art
+                                                                Design </a></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <img src="assets/img/others/10.png" alt="" class="lazy hover-effect-img">
+                                        </div>
+                                        <div class="tiles white ">
+                                            <div class="tiles-body">
+                                                <div class="row">
+                                                    <div class="user-profile-pic text-left">
+                                                        <img width="69" height="69"
+                                                             data-src-retina="assets/img/profiles/avatar2x.jpg"
+                                                             data-src="assets/img/profiles/avatar.jpg"
+                                                             src="assets/img/profiles/avatar.jpg" alt="">
+                                                        <div class="pull-right m-r-20 m-t-35"><span
+                                                                    class="bold text-black small-text">24m</span></div>
+                                                    </div>
+                                                    <div class="col-md-5 no-padding">
+                                                        <div class="user-comment-wrapper">
+                                                            <div class="comment">
+                                                                <div class="user-name text-black bold"> David <span
+                                                                            class="semi-bold">Jester</span></div>
+                                                                <div class="preview-wrapper">@ revox</div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7 no-padding">
+                                                        <div class="clearfix"></div>
+                                                        <div class="m-r-20 m-t-20 m-b-10  m-l-10">
+                                                            <p class="p-b-10">The attention to detail and the end
+                                                                product is stellar! I enjoyed the process </p>
+                                                            <a href="#" class="hashtags m-b-5"> #new york city </a> <a
+                                                                    href="#" class="hashtags m-b-5"> #amazing </a> <a
+                                                                    href="#" class="hashtags m-b-5"> #citymax </a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END BLOG POST WITH IMAGE -->
+                            </div>
+                            <div class="row">
+                                <!-- BEGIN BLOG POST SIMPLE -->
+                                <div class="col-md-12 m-b-10">
+                                    <div class="widget-item ">
+                                        <div class="controller overlay right">
+                                            <a href="javascript:;" class="reload"></a>
+                                            <a href="javascript:;" class="remove"></a>
+                                        </div>
+                                        <div class="tiles purple " style="max-height:345px">
+                                            <div class="tiles-body">
+                                                <h3 class="text-white m-t-50 m-b-30 m-r-20"> Webarch <span
+                                                            class="semi-bold">UI Bundle
+                        highly customizable UI
+                        elements</span></h3>
+                                                <div class="overlayer bottom-right fullwidth">
+                                                    <div class="overlayer-wrapper">
+                                                        <div class=" p-l-20 p-r-20 p-b-20 p-t-20">
+                                                            <div class="pull-right"><a href="#"
+                                                                                       class="hashtags transparent">
+                                                                    #Art Design </a></div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="tiles white ">
+                                            <div class="tiles-body">
+                                                <div class="row">
+                                                    <div class="user-comment-wrapper pull-left">
+                                                        <div class="profile-wrapper">
+                                                            <img src="assets/img/profiles/d.jpg" alt=""
+                                                                 data-src="assets/img/profiles/d.jpg"
+                                                                 data-src-retina="assets/img/profiles/d2x.jpg"
+                                                                 width="35" height="35">
+                                                        </div>
+                                                        <div class="comment">
+                                                            <div class="user-name text-black bold"> Jane <span
+                                                                        class="semi-bold">Smith</span></div>
+                                                            <div class="preview-wrapper">@ webarch</div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="pull-right m-r-20"><span
+                                                                class="bold text-black small-text">24m</span></div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="p-l-15 p-t-10 p-r-20">
+                                                        <p>The attention to detail and the end product is stellar! I
+                                                            enjoyed the process </p>
+                                                        <div class="post p-t-10 p-b-10">
+                                                            <ul class="action-bar no-margin p-b-20 ">
+                                                                <li><a href="#" class="muted bold"><i
+                                                                                class="fa fa-comment  m-r-10"></i>1584</a>
+                                                                </li>
+                                                                <li><a href="#" class="text-error bold"><i
+                                                                                class="fa fa-heart  m-r-10"></i>47k</a>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END BLOG POST SIMPLE -->
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="row">
+                                <!-- BEGIN BLOG POST WITH MAP -->
+                                <div class="col-md-12 m-b-10">
+                                    <div class="widget-item ">
+                                        <div class="controller overlay right">
+                                            <a href="javascript:;" class="reload"></a>
+                                            <a href="javascript:;" class="remove"></a>
+                                        </div>
+                                        <div class="tiles white p-t-15">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="profile-img-wrapper pull-left m-l-10">
+                                                        <div class=" p-r-10">
+                                                            <img src="assets/img/profiles/h.jpg" alt=""
+                                                                 data-src="assets/img/profiles/h.jpg"
+                                                                 data-src-retina="assets/img/profiles/h2x.jpg"
+                                                                 width="35" height="35">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <div class="user-name text-black bold large-text"> David <span
+                                                                class="semi-bold">Jester</span></div>
+                                                    <div class="preview-wrapper">was with <span
+                                                                class="bold">Jane Smith</span> and 4 others at <span
+                                                                class="bold">The Shore By O</span>.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="location-map-2" class="m-t-15 " style="height: 200px"></div>
+                                            <div class="post p-b-15 p-t-15 p-l-15 b-b b-grey">
+                                                <ul class="action-bar no-margin ">
+                                                    <li><a href="#" class="muted"><i class="fa fa-comment m-r-5"></i> 24</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="text-error bold"> <i
+                                                                    class="fa fa-heart-o  m-r-5"></i> 5</a>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <p class="p-t-10 p-b-10 p-l-15 p-r-15"><span class="bold">Jane Smith, John Smith, David Jester, pepper</span>
+                                                post and 214 others like this.</p>
+                                            <div class="clearfix"></div>
+                                            <div class="p-b-10 p-l-10 p-r-10">
+                                                <div class="profile-img-wrapper pull-left">
+                                                    <img width="35" height="35" alt="" src="assets/img/profiles/e.jpg"
+                                                         data-src="assets/img/profiles/e.jpg"
+                                                         data-src-retina="assets/img/profiles/e2x.jpg"></div>
+                                                <div class="inline pull-right" style="width:86%">
+                                                    <div class="input-group transparent ">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="Write a comment">
+                                                        <span class="input-group-addon"> <i
+                                                                    class="fa fa-camera"></i> </span></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END BLOG POST WITH MAP -->
+                            </div>
+                            <div class="row">
+                                <!-- BEGIN BLOG POST WITH IMAGE -->
+                                <div class="col-md-12 m-b-10">
+                                    <div class="widget-item ">
+                                        <div class="controller overlay right">
+                                            <a href="javascript:;" class="reload"></a>
+                                            <a href="javascript:;" class="remove"></a>
+                                        </div>
+                                        <div class="tiles green  overflow-hidden full-height" style="max-height:214px">
+                                            <div class="overlayer bottom-right fullwidth">
+                                                <div class="overlayer-wrapper">
+                                                    <div class="tiles gradient-black p-l-20 p-r-20 p-b-20 p-t-20">
+                                                        <div class="pull-right"><a href="#"
+                                                                                   class="hashtags transparent"> #Art
+                                                                Design </a></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <img src="assets/img/others/10.png" alt="" class="lazy hover-effect-img">
+                                        </div>
+                                        <div class="tiles white ">
+                                            <div class="tiles-body">
+                                                <div class="row">
+                                                    <div class="user-profile-pic text-left">
+                                                        <img width="69" height="69"
+                                                             data-src-retina="assets/img/profiles/avatar2x.jpg"
+                                                             data-src="assets/img/profiles/avatar.jpg"
+                                                             src="assets/img/profiles/avatar.jpg" alt="">
+                                                        <div class="pull-right m-r-20 m-t-35"><span
+                                                                    class="bold text-black small-text">24m</span></div>
+                                                    </div>
+                                                    <div class="col-md-5 no-padding">
+                                                        <div class="user-comment-wrapper">
+                                                            <div class="comment">
+                                                                <div class="user-name text-black bold"> David <span
+                                                                            class="semi-bold">Jester</span></div>
+                                                                <div class="preview-wrapper">@ revox</div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7 no-padding">
+                                                        <div class="clearfix"></div>
+                                                        <div class="m-r-20 m-t-20 m-b-10  m-l-10">
+                                                            <p class="p-b-10">The attention to detail and the end
+                                                                product is stellar! I enjoyed the process </p>
+                                                            <a href="#" class="hashtags m-b-5"> #new york city </a> <a
+                                                                    href="#" class="hashtags m-b-5"> #amazing </a> <a
+                                                                    href="#" class="hashtags m-b-5"> #citymax </a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- BEGIN BLOG POST WITH IMAGE -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row hidden-xlg">
+                <div class="col-md-4 col-sm-6">
+                    <div class="row ">
+                        <!-- BEGIN BLOG POST SIMPLE-->
+                        <div class="col-md-12 m-b-10">
+                            <div class="widget-item ">
+                                <div class="controller overlay right">
+                                    <a href="javascript:;" class="reload"></a>
+                                    <a href="javascript:;" class="remove"></a>
+                                </div>
+                                <div class="tiles green " style="max-height:345px">
+                                    <div class="tiles-body">
+                                        <h3 class="text-white m-t-50 m-b-30 m-r-20"> Webarch <span class="semi-bold">UI Bundle
+							highly customizable UI
+							elements</span></h3>
+                                        <div class="overlayer bottom-right fullwidth">
+                                            <div class="overlayer-wrapper">
+                                                <div class=" p-l-20 p-r-20 p-b-20 p-t-20">
+                                                    <div class="pull-right"><a href="#" class="hashtags transparent">
+                                                            #Art Design </a></div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="tiles white ">
+                                    <div class="tiles-body">
+                                        <div class="row">
+                                            <div class="user-comment-wrapper pull-left">
+                                                <div class="profile-wrapper"><img
+                                                            src="assets/img/profiles/avatar_small.jpg" alt=""
+                                                            data-src="assets/img/profiles/avatar_small.jpg"
+                                                            data-src-retina="assets/img/profiles/avatar_small2x.jpg"
+                                                            width="35" height="35"></div>
+                                                <div class="comment">
+                                                    <div class="user-name text-black bold"> David <span
+                                                                class="semi-bold">Cooper</span></div>
+                                                    <div class="preview-wrapper">@ revox</div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="pull-right m-r-20"><span
+                                                        class="bold text-black small-text">24m</span></div>
+                                            <div class="clearfix"></div>
+                                            <div class="p-l-15 p-t-10 p-r-20">
+                                                <p>The attention to detail and the end product is stellar! I enjoyed the
+                                                    process </p>
+                                                <div class="post p-t-10 p-b-10">
+                                                    <ul class="action-bar no-margin p-b-20 ">
+                                                        <li><a href="#" class="muted bold"><i
+                                                                        class="fa fa-comment  m-r-10"></i>1584</a></li>
+                                                        <li><a href="#" class="text-error bold"><i
+                                                                        class="fa fa-heart  m-r-10"></i>47k</a></li>
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END BLOG POST SIMPLE-->
+                    </div>
+                    <div class="row">
+                        <!-- BEGIN BLOG POST WITH CAROUSEL IMAGE -->
+                        <div class="col-md-12 m-b-10">
+                            <div class="widget-item ">
+                                <div class="controller overlay right">
+                                    <a href="javascript:;" class="reload"></a>
+                                    <a href="javascript:;" class="remove"></a>
+                                </div>
+                                <div class="tiles white p-t-15">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="profile-img-wrapper pull-left m-l-10">
+                                                <div class=" p-r-10">
+                                                    <img src="assets/img/profiles/c.jpg" alt=""
+                                                         data-src="assets/img/profiles/c.jpg"
+                                                         data-src-retina="assets/img/profiles/c2x.jpg" width="35"
+                                                         height="35"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="user-name text-black bold large-text"> John <span
+                                                        class="semi-bold">Smith</span></div>
+                                            <div class="preview-wrapper">shared a picture with <span class="bold">Jane Smith</span>.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="image-demo-carl" class="m-t-15 owl-carousel owl-theme">
+                                        <div class="item"><img src="assets/img/others/1.jpg" alt=""></div>
+                                        <div class="item"><img src="assets/img/others/2.jpg" alt=""></div>
+                                    </div>
+                                    <div class="post p-b-15 p-t-15 p-l-15 b-b b-grey">
+                                        <ul class="action-bar no-margin ">
+                                            <li><a href="#" class="muted"><i class="fa fa-comment m-r-5"></i> 24</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="text-error bold"> <i
+                                                            class="fa fa-heart-o  m-r-5"></i> 5</a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <p class="p-t-10 p-b-10 p-l-15 p-r-15"><span class="bold">Jane Smith, John Smith, David Jester, pepper</span>
+                                        post and 214 others like this.</p>
+                                    <div class="clearfix"></div>
+                                    <div class="p-b-10 p-l-10 p-r-10">
+                                        <div class="profile-img-wrapper pull-left"><img
+                                                    src="assets/img/profiles/avatar_small.jpg" alt=""
+                                                    data-src="assets/img/profiles/avatar_small.jpg"
+                                                    data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="35"
+                                                    height="35"></div>
+                                        <div class="inline pull-right" style="width:86%">
+                                            <div class="input-group transparent ">
+                                                <input type="text" class="form-control" placeholder="Write a comment">
+                                                <span class="input-group-addon"> <i class="fa fa-camera"></i> </span>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END BLOG POST WITH CAROUSEL IMAGE -->
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 hidden-sm">
+                    <div class="row">
+                        <!-- BEGIN BLOG POST WITH IMAGE -->
+                        <div class="col-md-12 m-b-10">
+                            <div class="widget-item ">
+                                <div class="controller overlay right">
+                                    <a href="javascript:;" class="reload"></a>
+                                    <a href="javascript:;" class="remove"></a>
+                                </div>
+                                <div class="tiles green  overflow-hidden full-height" style="max-height:214px">
+                                    <div class="overlayer bottom-right fullwidth">
+                                        <div class="overlayer-wrapper">
+                                            <div class="tiles gradient-black p-l-20 p-r-20 p-b-20 p-t-20">
+                                                <div class="pull-right"><a href="#" class="hashtags transparent"> #Art
+                                                        Design </a></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img src="assets/img/others/10.png" alt="" class="lazy hover-effect-img"></div>
+                                <div class="tiles white ">
+                                    <div class="tiles-body">
+                                        <div class="row">
+                                            <div class="user-profile-pic text-left">
+                                                <img width="69" height="69"
+                                                     data-src-retina="assets/img/profiles/avatar2x.jpg"
+                                                     data-src="assets/img/profiles/avatar.jpg"
+                                                     src="assets/img/profiles/avatar.jpg" alt="">
+                                                <div class="pull-right m-r-20 m-t-35"><span
+                                                            class="bold text-black small-text">24m</span></div>
+                                            </div>
+                                            <div class="col-md-5 no-padding">
+                                                <div class="user-comment-wrapper">
+                                                    <div class="comment">
+                                                        <div class="user-name text-black bold"> David <span
+                                                                    class="semi-bold">Jester</span></div>
+                                                        <div class="preview-wrapper">@ revox</div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7 no-padding">
+                                                <div class="clearfix"></div>
+                                                <div class="m-r-20 m-t-20 m-b-10  m-l-10">
+                                                    <p class="p-b-10">The attention to detail and the end product is
+                                                        stellar! I enjoyed the process </p>
+                                                    <a href="#" class="hashtags m-b-5"> #new york city </a> <a href="#"
+                                                                                                               class="hashtags m-b-5">
+                                                        #amazing </a> <a href="#" class="hashtags m-b-5"> #citymax </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END BLOG POST WITH IMAGE -->
+                    </div>
+                    <div class="row">
+                        <!-- BEGIN BLOG POST SIMPLE -->
+                        <div class="col-md-12 m-b-10">
+                            <div class="widget-item ">
+                                <div class="controller overlay right">
+                                    <a href="javascript:;" class="reload"></a>
+                                    <a href="javascript:;" class="remove"></a>
+                                </div>
+                                <div class="tiles purple " style="max-height:345px">
+                                    <div class="tiles-body">
+                                        <h3 class="text-white m-t-50 m-b-30 m-r-20"> Webarch <span class="semi-bold">UI Bundle
+                        highly customizable UI
+                        elements</span></h3>
+                                        <div class="overlayer bottom-right fullwidth">
+                                            <div class="overlayer-wrapper">
+                                                <div class=" p-l-20 p-r-20 p-b-20 p-t-20">
+                                                    <div class="pull-right"><a href="#" class="hashtags transparent">
+                                                            #Art Design </a></div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="tiles white ">
+                                    <div class="tiles-body">
+                                        <div class="row">
+                                            <div class="user-comment-wrapper pull-left">
+                                                <div class="profile-wrapper">
+                                                    <img src="assets/img/profiles/d.jpg" alt=""
+                                                         data-src="assets/img/profiles/d.jpg"
+                                                         data-src-retina="assets/img/profiles/d2x.jpg" width="35"
+                                                         height="35">
+                                                </div>
+                                                <div class="comment">
+                                                    <div class="user-name text-black bold"> Jane <span
+                                                                class="semi-bold">Smith</span></div>
+                                                    <div class="preview-wrapper">@ webarch</div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="pull-right m-r-20"><span
+                                                        class="bold text-black small-text">24m</span></div>
+                                            <div class="clearfix"></div>
+                                            <div class="p-l-15 p-t-10 p-r-20">
+                                                <p>The attention to detail and the end product is stellar! I enjoyed the
+                                                    process </p>
+                                                <div class="post p-t-10 p-b-10">
+                                                    <ul class="action-bar no-margin p-b-20 ">
+                                                        <li><a href="#" class="muted bold"><i
+                                                                        class="fa fa-comment  m-r-10"></i>1584</a></li>
+                                                        <li><a href="#" class="text-error bold"><i
+                                                                        class="fa fa-heart  m-r-10"></i>47k</a></li>
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END BLOG POST SIMPLE -->
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="row">
+                        <!-- BEGIN BLOG POST WITH MAP -->
+                        <div class="col-md-12 m-b-10">
+                            <div class="widget-item ">
+                                <div class="controller overlay right">
+                                    <a href="javascript:;" class="reload"></a>
+                                    <a href="javascript:;" class="remove"></a>
+                                </div>
+                                <div class="tiles white p-t-15">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="profile-img-wrapper pull-left m-l-10">
+                                                <div class=" p-r-10">
+                                                    <img src="assets/img/profiles/h.jpg" alt=""
+                                                         data-src="assets/img/profiles/h.jpg"
+                                                         data-src-retina="assets/img/profiles/h2x.jpg" width="35"
+                                                         height="35">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="user-name text-black bold large-text"> David <span
+                                                        class="semi-bold">Jester</span></div>
+                                            <div class="preview-wrapper">was with <span class="bold">Jane Smith</span>
+                                                and 4 others at <span class="bold">The Shore By O</span>.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="location-map" class="m-t-15 " style="height: 200px"></div>
+                                    <div class="post p-b-15 p-t-15 p-l-15 b-b b-grey">
+                                        <ul class="action-bar no-margin ">
+                                            <li><a href="#" class="muted"><i class="fa fa-comment m-r-5"></i> 24</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="text-error bold"> <i
+                                                            class="fa fa-heart-o  m-r-5"></i> 5</a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <p class="p-t-10 p-b-10 p-l-15 p-r-15"><span class="bold">Jane Smith, John Smith, David Jester, pepper</span>
+                                        post and 214 others like this.</p>
+                                    <div class="clearfix"></div>
+                                    <div class="p-b-10 p-l-10 p-r-10">
+                                        <div class="profile-img-wrapper pull-left">
+                                            <img width="35" height="35" alt="" src="assets/img/profiles/e.jpg"
+                                                 data-src="assets/img/profiles/e.jpg"
+                                                 data-src-retina="assets/img/profiles/e2x.jpg"></div>
+                                        <div class="inline pull-right" style="width:86%">
+                                            <div class="input-group transparent ">
+                                                <input type="text" class="form-control" placeholder="Write a comment">
+                                                <span class="input-group-addon"> <i class="fa fa-camera"></i> </span>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END BLOG POST WITH MAP -->
+                    </div>
+                    <div class="row">
+                        <!-- BEGIN BLOG POST WITH IMAGE -->
+                        <div class="col-md-12 m-b-10">
+                            <div class="widget-item ">
+                                <div class="controller overlay right">
+                                    <a href="javascript:;" class="reload"></a>
+                                    <a href="javascript:;" class="remove"></a>
+                                </div>
+                                <div class="tiles green  overflow-hidden full-height" style="max-height:214px">
+                                    <div class="overlayer bottom-right fullwidth">
+                                        <div class="overlayer-wrapper">
+                                            <div class="tiles gradient-black p-l-20 p-r-20 p-b-20 p-t-20">
+                                                <div class="pull-right"><a href="#" class="hashtags transparent"> #Art
+                                                        Design </a></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img src="assets/img/others/10.png" alt="" class="lazy hover-effect-img"></div>
+                                <div class="tiles white ">
+                                    <div class="tiles-body">
+                                        <div class="row">
+                                            <div class="user-profile-pic text-left">
+                                                <img width="69" height="69"
+                                                     data-src-retina="assets/img/profiles/avatar2x.jpg"
+                                                     data-src="assets/img/profiles/avatar.jpg"
+                                                     src="assets/img/profiles/avatar.jpg" alt="">
+                                                <div class="pull-right m-r-20 m-t-35"><span
+                                                            class="bold text-black small-text">24m</span></div>
+                                            </div>
+                                            <div class="col-md-5 no-padding">
+                                                <div class="user-comment-wrapper">
+                                                    <div class="comment">
+                                                        <div class="user-name text-black bold"> David <span
+                                                                    class="semi-bold">Jester</span></div>
+                                                        <div class="preview-wrapper">@ revox</div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7 no-padding">
+                                                <div class="clearfix"></div>
+                                                <div class="m-r-20 m-t-20 m-b-10  m-l-10">
+                                                    <p class="p-b-10">The attention to detail and the end product is
+                                                        stellar! I enjoyed the process </p>
+                                                    <a href="#" class="hashtags m-b-5"> #new york city </a> <a href="#"
+                                                                                                               class="hashtags m-b-5">
+                                                        #amazing </a> <a href="#" class="hashtags m-b-5"> #citymax </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BEGIN BLOG POST WITH IMAGE -->
                     </div>
                 </div>
             </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2017 <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap Dash</a>. All rights reserved.</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
-            </div>
-        </footer>
-        <!-- partial -->
     </div>
 @endsection

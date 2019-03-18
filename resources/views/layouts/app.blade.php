@@ -1,80 +1,114 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<?php
+/**
+ * Created by PhpStorm.
+ * User: mhamdi
+ * Date: 3/18/19
+ * Time: 8:08 PM
+ */
+?><!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <title>Webarch - Responsive Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <!-- BEGIN PLUGIN CSS -->
+    <link href="{{ asset('assets') }}/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets') }}/plugins/jquery-metrojs/MetroJs.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/plugins/shape-hover/css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/plugins/shape-hover/css/component.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/plugins/owl-carousel/owl.carousel.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/plugins/owl-carousel/owl.theme.css"/>
+    <link href="{{ asset('assets') }}/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="{{ asset('assets') }}/plugins/jquery-slider/css/jquery.sidr.light.css" rel="stylesheet" type="text/css"
+          media="screen"/>
+    <link rel="stylesheet" href="{{ asset('assets') }}/plugins/jquery-ricksaw-chart/css/rickshaw.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{{ asset('assets') }}/plugins/Mapplic/mapplic/mapplic.css" type="text/css" media="screen">
+    <!-- END PLUGIN CSS -->
+    <!-- BEGIN PLUGIN CSS -->
+    <link href="{{ asset('assets') }}/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="{{ asset('assets') }}/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets') }}/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ asset('assets') }}/plugins/animate.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets') }}/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css"/>
+    <!-- END PLUGIN CSS -->
+    <!-- BEGIN CORE CSS FRAMEWORK -->
+    <link href="{{ asset('webarch') }}/css/webarch.css" rel="stylesheet" type="text/css"/>
+    <!-- END CORE CSS FRAMEWORK -->
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="">
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-inverse ">
+    <!-- BEGIN TOP NAVIGATION BAR -->
+@include('tiles.top_navigation')
+<!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- END HEADER -->
+<!-- BEGIN CONTAINER -->
+<div class="page-container row-fluid">
+    <!-- BEGIN SIDEBAR -->
+    @include('tiles.side_nav')
+    <a href="#" class="scrollup">Scroll</a>
+@include('tiles.side_footer')
+<!-- END SIDEBAR -->
+    <!-- BEGIN PAGE CONTAINER-->
+    @if(Session::has('message'))
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <div class="alert alert-info alert-{{ Session::get('alert-class', 'info') }}">
+                <p>Test {{ Session::get('message') }}</p>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        </div>
     </div>
+@endif
+@yield('content')
+<!-- BEGIN CHAT -->
+@include('tiles.chat_window')
+<!-- END CHAT -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN CORE JS FRAMEWORK-->
+<script src="{{ asset('assets') }}/plugins/pace/pace.min.js" type="text/javascript"></script>
+<!-- BEGIN JS DEPENDECENCIES-->
+<script src="{{ asset('assets') }}/plugins/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-block-ui/jqueryblockui.min.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-scrollbar/jquery.scrollbar.min.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+<!-- END CORE JS DEPENDECENCIES-->
+<!-- BEGIN CORE TEMPLATE JS -->
+<script src="{{ asset('webarch') }}/js/webarch.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/js/chat.js" type="text/javascript"></script>
+<!-- END CORE TEMPLATE JS -->
+<!-- BEGIN PAGE LEVEL JS -->
+<script src="{{ asset('assets') }}/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-ricksaw-chart/js/raphael-min.js"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-ricksaw-chart/js/d3.v2.js"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-ricksaw-chart/js/rickshaw.min.js"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-sparkline/jquery-sparkline.js"></script>
+<script src="{{ asset('assets') }}/plugins/skycons/skycons.js"></script>
+<script src="{{ asset('assets') }}/plugins/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-gmap/gmaps.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/Mapplic/js/jquery.easing.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/Mapplic/js/jquery.mousewheel.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/Mapplic/js/hammer.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/Mapplic/mapplic/mapplic.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-flot/jquery.flot.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-metrojs/MetroJs.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN CORE TEMPLATE JS -->
+<script src="{{ asset('assets') }}/js/dashboard_v2.js" type="text/javascript"></script>
+@yield('scripts')
 </body>
 </html>
