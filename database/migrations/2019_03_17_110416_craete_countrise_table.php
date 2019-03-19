@@ -16,8 +16,8 @@ class CraeteCountriseTable extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('code')->unique();
-            $table->string('name');
+            $table->string('code', 3)->unique();
+            $table->string('name', 255);
         });
     }
 

@@ -16,7 +16,7 @@ class CraeteRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('label', 45)->nullable(false);
+            $table->string('label', 255)->nullable(false);
             $table->integer('num_of_users')->default(0);
         });
     }

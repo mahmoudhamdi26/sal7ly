@@ -1,129 +1,86 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: mahmoud
- * Date: 3/25/16
- * Time: 1:40 PM
- */
-        ?>
-
 @extends('layouts.app')
 
+@section('content')
 
-@section('app_header')
-    <div class="app-header white bg b-b">
-        <div class="navbar" data-pjax>
-            <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up p-r m-a-0">
-                <i class="ion-navicon"></i>
-            </a>
-            <!-- link and dropdown -->
-            <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <span class="navbar-item text-md">{{trans('labels.countries')}}</span>
+    <!-- BEGIN PAGE CONTAINER-->
+    <div class="page-content">
+        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+        <div id="portlet-config" class="modal hide">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"></button>
+                <h3>Widget Settings</h3>
+            </div>
+            <div class="modal-body">Widget settings form goes here</div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="content">
+            <ul class="breadcrumb">
+                <li>
+                    <p>YOU ARE HERE</p>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-muted" href="{{ action('CountryController@getCreate') }}"
-                       data-toggle_="modal" data-target_="#modal-new" title="Reply">
+                <li><a href="#" class="active">Countries</a>
+                </li>
+            </ul>
+            <div class="page-title"> <i class="icon-custom-left"></i>
+                <h3>Basic - <span class="semi-bold">Countries</span></h3>
+                <a class="nav-link text-muted" href="{{ action('CountryController@getCreate') }}"
+                   data-toggle_="modal" data-target_="#modal-new" title="Reply">
       				            <span class="">
       				            	<i class="fa fa-fw fa-plus"></i>
       				            	<span class="hidden-sm-down">{{trans('labels.add_new')}}</span>
       				            </span>
-                    </a>
-                </li>
-            </ul>
-            <!-- / link and dropdown -->
-            <!-- nabar right -->
-            @include('tiles.nav_bar_right')
-            <!-- / navbar right -->
-        </div>
-    </div>
-
-@endsection
-
-@section('content')
-    <!-- ############ PAGE START-->
-    <div class="padding">
-
-        @if(Session::has('message'))
+                </a>
+            </div>
             <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="alert alert-{{ Session::get('alert-class', 'info') }}">
-                        <p>{{ Session::get('message') }}</p>
+                <div class="col-md-12">
+                    <div class="grid simple ">
+                        <div class="grid-title no-border">
+                            <h4>Table  <span class="semi-bold">Styles</span></h4>
+                            <div class="tools">
+                                <a href="javascript:;" class="collapse"></a>
+                                <a href="#grid-config" data-toggle="modal" class="config"></a>
+                                <a href="javascript:;" class="reload"></a>
+                                <a href="javascript:;" class="remove"></a>
+                            </div>
+                        </div>
+                        <div class="grid-body no-border">
+                            <h3>Countries  <span class="semi-bold">Table</span></h3>
+                            <table class="table no-more-tables">
+                                <thead>
+                                <tr>
+                                    <th style="width:9%">{{ trans('labels.code') }}</th>
+                                    <th style="width:9%">{{ trans('labels.name') }}</th>
+                                    <th style="width:9%">{{ trans('labels.actions') }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($items as $item)
+                                    <tr>
+                                        <td class="v-align-middle">{{ $item->code }}</td>
+                                        <td class="v-align-middle">
+                                            <a href="{{ action('CountryController@getShow', $item->id) }}">
+                                                <span class="muted">{{ $item->name }}</span>
+                                            </a>
+                                        </td>
+                                        <td class="v-align-middle">
+                                            <div class="btn-group">
+                                                <a href="{{ action('CountryController@getEdit', $item->id ) }}"
+                                                    class="btn" aria-pressed="false"><i class="fa fa-edit"></i></a>
+                                                <a onclick="return confirm('Are you sure you want to delete this item?');"
+                                                   href="{{ action('CountryController@getDestroy', $item->id ) }}"
+                                                    class="btn btn-primary"><i class="fa fa-remove"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        @endif
-
-            <div class="row">
-                <div class="col-md-12 text-center" style="margin: 10px;">
-                    <form action="" method="get" class="form-inline">
-                        <div class="form-group">
-                            <input class="form-control" style="width: 300px;"
-                                   type="text" placeholder="Name"
-                                   value="{{ \Illuminate\Support\Facades\Input::get('name', '') }}" name="name">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Find</button>
-                    </form>
-                </div>
-            </div>
-
-        <div class="box">
-            <div>
-                <table class="table m-b-none" data-ui-jp_="footable" data-filter_="#filter" data-page-size_="15">
-                    <thead>
-                    <tr>
-                        <th>{{trans('labels.sn')}}</th>
-                        <th>{{trans('labels.name')}}</th>
-                        <th>{{trans('labels.actions')}}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($items as $item)
-                        <tr>
-                            <td>{{ $item->id }}</td>
-                            <td>
-                                <a href="{{ action('CountryController@getShow', $item->id) }}">{{ $item->name }}</a>
-                            </td>
-                            <td>
-                                <a href="{{ action('CountryController@getEdit', $item->id ) }}">
-                                    <i class="ion-ios-gear-outline m-x-xs"></i>
-                                </a>
-                                <a onclick="return confirm('Are you sure you want to delete this item?');"
-                                        href="{{ action('CountryController@getDestroy', $item->id ) }}">
-                                    <i class="ion-ios-trash-outline m-x-xs"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                    <tr class="hide">
-                        <td>Education Level</td>
-                        <td>
-                            <span class="label rounded">Primary Stage</span>
-                            <span class="label rounded">Preparatory Stage</span>
-                            <span class="label rounded">Secondary Education</span>
-                            <span class="label rounded">Post-Secondary education</span>
-                        </td>
-                        <td>
-                            <a><i class="ion-ios-gear-outline m-x-xs"></i></a>
-                            <a><i class="ion-ios-trash-outline m-x-xs"></i></a>
-                        </td>
-                    </tr>
-                    </tbody>
-
-                    <tfoot class="hide-if-no-paging">
-                    <tr>
-                        <td colspan="5" class="text-center">
-                            {{--{!! $items->render() !!}--}}
-                            {{ $items->appends(request()->except('page'))->links() }}
-                        </td>
-                    </tr>
-                    </tfoot>
-                </table>
-            </div>
         </div>
+        <!-- END PAGE -->
     </div>
-
-    <!-- ############ PAGE END-->
 
 @endsection

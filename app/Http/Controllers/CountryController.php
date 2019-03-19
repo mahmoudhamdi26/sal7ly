@@ -45,9 +45,8 @@ class CountryController extends Controller {
 		}
 
 		$sessionUser = Auth::user();
-		$leagues     = League::all();
 
-		return view( 'countries.create', compact( 'leagues' ) );
+		return view( 'countries.create');
 	}
 
 	public function postStore( Request $request ) {
@@ -60,26 +59,15 @@ class CountryController extends Controller {
 		$this->validate( $request,
 			[
 				'name'         => 'required|unique:countries',
-				'abbreviation' => 'required|unique:countries',
-				'stats_id'     => 'unique:countries|numeric',
-				'leagues'      => 'array',
+				'code' => 'required|unique:countries',
 			] );
 
 		DB::beginTransaction();
 		try {
 			$inputs = $request->all();
 			$item   = Country::create( $inputs );
-			if ( $request->filled( 'leagues' ) ) {
-				$leagues = $inputs['leagues'];
-				foreach ( $leagues as $key => $league ) {
-					$country_league             = new CountryLeagues;
-					$country_league->league_id  = $league;
-					$country_league->country_id = $item->id;
-					$country_league->save();
-				}
-			}
-			$newData = $item->toJson();
 
+			$newData = $item->toJson();
 			//// Logging
 			$logMsg     = $sessionUser->name . " " . $sessionUser->lname . " Created Country $item->id";
 			$routeParts = explode( '@', Route::getCurrentRoute()->getActionName() );
@@ -95,7 +83,7 @@ class CountryController extends Controller {
 		}
 
 		DB::commit();
-		Session::flash( 'message', 'District added!' );
+		Session::flash( 'message', 'Country added!' );
 
 		return redirect( 'countries' );
 	}
