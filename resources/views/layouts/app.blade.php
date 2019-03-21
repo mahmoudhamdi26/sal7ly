@@ -15,6 +15,10 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
     <!-- BEGIN PLUGIN CSS -->
+    <link href="{{ asset('assets') }}/plugins/jquery-notifications/css/messenger.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('assets') }}/plugins/jquery-notifications/css/messenger-theme-flat.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('assets') }}/plugins/jquery-notifications/css/location-sel.css" rel="stylesheet" type="text/css" media="screen" />
+
     <link href="{{ asset('assets') }}/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets') }}/plugins/jquery-metrojs/MetroJs.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/plugins/shape-hover/css/demo.css"/>
@@ -59,15 +63,6 @@
 @include('tiles.side_footer')
 <!-- END SIDEBAR -->
     <!-- BEGIN PAGE CONTAINER-->
-    @if(Session::has('message'))
-    <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <div class="alert alert-info alert-{{ Session::get('alert-class', 'info') }}">
-                <p>Test {{ Session::get('message') }}</p>
-            </div>
-        </div>
-    </div>
-@endif
 @yield('content')
 <!-- BEGIN CHAT -->
 @include('tiles.chat_window')
@@ -109,6 +104,17 @@
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN CORE TEMPLATE JS -->
 <script src="{{ asset('assets') }}/js/dashboard_v2.js" type="text/javascript"></script>
+
+<!-- Notifications -->
+<script src="{{ asset('assets') }}/plugins/jquery-notifications/js/messenger.min.js" type="text/javascript"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-notifications/js/messenger-theme-future.js" type="text/javascript"></script>
+@if(Session::has('message'))
+    <script type="text/javascript">
+        Messenger().post("{{ Session::get('message') }}");
+    </script>
+
+@endif
+
 @yield('scripts')
 </body>
 </html>

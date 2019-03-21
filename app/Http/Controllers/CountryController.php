@@ -116,14 +116,7 @@ class CountryController extends Controller {
 		$sessionUser = Auth::user();
 
 		$model           = Country::findOrFail( $id );
-		$leagues         = League::all();
-		$Country_leagues = CountryLeagues::where( 'country_id', $id )->get();
-		$country_leagues = array();
-		foreach ( $Country_leagues as $key => $country_league ) {
-			$country_leagues[ $key ] = $country_league->league_id;
-		}
-
-		return view( 'countries.edit', compact( 'sessionUser', 'model', 'leagues', 'country_leagues' ) );
+		return view( 'countries.edit', compact( 'sessionUser', 'model') );
 	}
 
 	public function postUpdate( Request $request, $id ) {
@@ -140,9 +133,7 @@ class CountryController extends Controller {
 			[
 				#'id' => 'required|max:4|unique:countries,id,'.$model->id,
 				'name'         => 'required|unique:countries,name,' . $model->id,
-				'abbreviation' => 'required|unique:countries,abbreviation,' . $model->id,
-				'stats_id'     => 'numeric|unique:countries,stats_id,' . $model->id,
-				'leagues'      => 'array',
+				'code' => 'required|unique:countries,code,' . $model->id,
 
 			] );
 
@@ -150,22 +141,6 @@ class CountryController extends Controller {
 			$inputs = $request->all();
 			#$inputs['id'] = strtoupper($inputs['id']);
 			$model->update( $inputs );
-
-			# delete existing leagues first
-			$Country_leagues = CountryLeagues::where( 'country_id', $id )->get();
-			foreach ( $Country_leagues as $key => $country_league ) {
-				$country_league->delete();
-			}
-			# insert new records
-			if ( $request->filled( 'leagues' ) ) {
-				$leagues = $inputs['leagues'];
-				foreach ( $leagues as $key => $league ) {
-					$country_league             = new CountryLeagues;
-					$country_league->league_id  = $league;
-					$country_league->country_id = $model->id;
-					$country_league->save();
-				}
-			}
 			$newData = $model->toJson();
 
 			//// Logging
@@ -194,35 +169,7 @@ class CountryController extends Controller {
 		$sessionUser = Auth::user();
 
 		try {
-			// $count = Indicator::where('countries_id', $id)->count();
-			// if($count > 0){
-			//     Session::flash('message', "Can't delete country because there is assigned indicators to it.");
-			//     Session::flash('alert-class', 'danger');
-			//     return Redirect::back();
-			// }
-
-			// $institCount = Institution::where('countries_id', $id)->count();
-			// if($institCount > 0){
-			//     Session::flash('message', "Can't delete country because there is assigned institutions to it.");
-			//     Session::flash('alert-class', 'danger');
-			//     return Redirect::back();
-			// }
-
-			// $usersCount = User::where('countries_id', $id)->count();
-			// if($usersCount > 0){
-			//     Session::flash('message', "Can't delete country because there is assigned users to it.");
-			//     Session::flash('alert-class', 'danger');
-			//     return Redirect::back();
-			// }
-
-//            $item = Country::findOrFail($id);
-//            $item->delete(); 
-
 			# delete leagues
-			$Country_leagues = CountryLeagues::where( 'country_id', $id )->get();
-			foreach ( $Country_leagues as $key => $country_league ) {
-				$country_league->delete();
-			}
 			$item = Country::where( 'id', $id )->first();
 			$item->delete();
 			//// Logging
