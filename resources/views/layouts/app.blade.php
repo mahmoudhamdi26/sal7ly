@@ -41,13 +41,14 @@
     <!-- END PLUGIN CSS -->
     <!-- BEGIN CORE CSS FRAMEWORK -->
     <link href="{{ asset('webarch') }}/css/webarch.css" rel="stylesheet" type="text/css"/>
+{{--    <link href="{{ asset('webarch') }}/css/webarch.rtl.css" rel="stylesheet" type="text/css" />--}}
     <!-- END CORE CSS FRAMEWORK -->
 
     @yield('css')
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
-<body class="">
+<body class="rtl_xnxx">
 <!-- BEGIN HEADER -->
 <div class="header navbar navbar-inverse ">
     <!-- BEGIN TOP NAVIGATION BAR -->

@@ -15,5 +15,5 @@
         <div class="details-status"><span class="animate-number" data-value="86"
                                           data-animation-duration="560">86</span>%
         </div>
-        <a href="lockscreen.html"><i class="material-icons">power_settings_new</i></a></div>
+        <a href="{{ action('LoginController@getLogout') }}"><i class="material-icons">power_settings_new</i></a></div>
 </div>
