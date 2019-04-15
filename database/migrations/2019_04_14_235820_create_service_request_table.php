@@ -15,6 +15,7 @@ class CreateServiceRequestTable extends Migration
     {
         Schema::create('service_request', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('desc')->nullable();
             $table->timestamps();
             $table->dateTime("needed_at");
             $table->unsignedBigInteger('user_id');

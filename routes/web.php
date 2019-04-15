@@ -59,3 +59,14 @@ Route::post('/countries/create', 'CountryController@postStore');
 Route::get('/countries/edit/{id}', 'CountryController@getEdit');
 Route::post('/countries/edit/{id}', 'CountryController@postUpdate');
 Route::get('/countries/delete/{id}', 'CountryController@getDestroy');
+
+
+//Categories
+Route::get('/categories', 'CategoryController@getIndex');
+Route::get('/categories/index', 'CategoryController@getIndex');
+Route::get('/categories/show/{id}', 'CategoryController@getShow');
+Route::get('/categories/create', 'CategoryController@getCreate');
+Route::post('/categories/create', 'CategoryController@postStore');
+Route::get('/categories/edit/{id}', 'CategoryController@getEdit');
+Route::post('/categories/edit/{id}', 'CategoryController@postUpdate');
+Route::get('/categories/delete/{id}', 'CategoryController@getDestroy');
