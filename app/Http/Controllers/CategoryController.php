@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\models\Category;
+use App\models\Service;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -81,18 +82,14 @@ class CategoryController extends Controller {
             abort( 403, 'Unauthorized action.' );
         }
 
-
+        $category = Category::findOrFail( $id );
         $sessionUser     = Auth::user();
-        $Country_leagues = CountryLeagues::where( 'country_id', $id )->get();
-        $leagues         = array();
+        $cat_services = Service::where( 'category_id', $id )->get();
 
-        foreach ( $Country_leagues as $key => $country_league ) {
-            $leagues[ $key ] = League::findOrFail( $country_league->league_id );
-        }
+        print($cat_services);
 
-        $model = Category::findOrFail( $id );
 
-        return view( 'categories.show', compact( 'sessionUser', 'model', 'leagues' ) );
+        return view( 'services.index', compact( 'sessionUser', 'category', 'cat_services' ) );
     }
 
     public function getEdit( $id ) {

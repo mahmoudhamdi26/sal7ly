@@ -70,3 +70,14 @@ Route::post('/categories/create', 'CategoryController@postStore');
 Route::get('/categories/edit/{id}', 'CategoryController@getEdit');
 Route::post('/categories/edit/{id}', 'CategoryController@postUpdate');
 Route::get('/categories/delete/{id}', 'CategoryController@getDestroy');
+
+
+//Services
+Route::get('/services', 'ServicesController@getIndex');
+Route::get('/services/index', 'ServicesController@getIndex');
+Route::get('/services/show/{id}', 'ServicesController@getShow');
+Route::get('/services/create', 'ServicesController@getCreate');
+Route::post('/services/create', 'ServicesController@postStore');
+Route::get('/services/edit/{id}', 'ServicesController@getEdit');
+Route::post('/services/edit/{id}', 'ServicesController@postUpdate');
+Route::get('/services/delete/{id}', 'ServicesController@getDestroy');

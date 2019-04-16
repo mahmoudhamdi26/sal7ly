@@ -18,12 +18,12 @@
                     <p>YOU ARE HERE</p>
                 </li>
                 <li>
-                    Countries
+                    {{ @trans('labels.nav_services') }}
                 </li>
                 <li><a href="#" class="active">Create</a></li>
             </ul>
             <div class="page-title"><i class="icon-custom-left"></i>
-                <h3>{{ @trans('labels.update') }} - <span class="semi-bold">{{ @trans('labels.category') }}</span></h3>
+                <h3>{{ @trans('labels.create') }} - <span class="semi-bold">{{ @trans('labels.service') }}</span></h3>
             </div>
             <!-- BEGIN BASIC FORM ELEMENTS-->
             <div class="row">
@@ -42,20 +42,60 @@
                             <br>
                             <div class="row">
                                 <form class="" role="form" enctype="multipart/form-data"
-                                      method="POST" action="{{ action('ServicesController@postUpdate', $model->id) }}">
+                                      method="POST" action="{{ action('ServicesController@postStore') }}">
                                     {!! csrf_field() !!}
                                     <div class="col-md-8 col-sm-8 col-xs-8">
+
                                         <div class="form-group">
                                             <label class="form-label ">{{ trans('labels.name') }}</label>
-                                            <span class="help">e.g. "كهرباء"</span>
+                                            <span class="help">e.g. "ثلاجات"</span>
                                             <div class="controls">
                                                 <input type="text" class="form-control" name="name"
-                                                       value="{{ $model->name }}" required="">
+                                                       value="{{ old('name') }}"
+                                                       required="">
 
                                                 @if ($errors->has('name'))
                                                     <span class="help-block">
-                                                    <strong>{{ $errors->first('name') }}</strong>
-                                                </span>
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label ">{{ trans('labels.category') }}</label>
+                                            {{--<span class="help">e.g. "سباكة "</span>--}}
+                                            <div class="controls">
+                                                <select name="category_id" class="form-control" required>
+                                                    @foreach($cats as $cat)
+                                                        <option value="{{$cat->id}}"
+                                                                @if(old('category_id')==$cat->id)
+                                                                selected
+                                                                @endif
+                                                        >{{$cat->name}}</option>
+                                                    @endforeach
+                                                </select>
+
+                                                @if ($errors->has('category_id'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('category_id') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label ">{{ trans('labels.desc') }}</label>
+                                            {{--<span class="help">e.g. "سباكة "</span>--}}
+                                            <div class="controls">
+                                                {{--                                                <input type="textarea" class="form-control" name="name"--}}
+                                                {{--                                                       value="{{ old('desc') }}"--}}
+                                                {{--                                                       required="">--}}
+                                                <textarea name="desc" class="form-control">{{old('desc')}}</textarea>
+                                                @if ($errors->has('desc'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('desc') }}</strong>
+                                                    </span>
                                                 @endif
                                             </div>
                                         </div>

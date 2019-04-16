@@ -40,7 +40,14 @@
                     <li><a href="{{ action('CategoryController@getCreate') }}">{{ @trans('labels.nav_create') }}</a></li>
                 </ul>
             </li>
-
+            <li>
+                <a href="javascript:;"> <i class="material-icons">apps</i> <span
+                            class="title">{{ @trans('labels.nav_services') }}</span> <span class=" arrow"></span> </a>
+                <ul class="sub-menu">
+                    <li><a href="{{ action('ServicesController@getIndex') }}">{{ @trans('labels.nav_list') }}</a></li>
+                    <li><a href="{{ action('ServicesController@getCreate') }}">{{ @trans('labels.nav_create') }}</a></li>
+                </ul>
+            </li>
 
         </ul>
 
