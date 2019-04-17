@@ -12,6 +12,7 @@ return [
     'nav_countries'=>'الدول',
     'nav_main_cats'=>'الخدمات الرئيسيه',
     'nav_services'=>'الخدمات الفرعيه',
+    'nav_job_types'=>'اعمال الخدمات',
     'nav_list'=>'عرض القائمة',
     'nav_create'=>'اضافة جديد',
     'nav_logout'=>'تسجيل الخروج',
@@ -21,13 +22,18 @@ return [
     'categories'=>'الخدمات',
     'services'=>'الخدمات',
     'service'=>'خدمه',
+    'job'=>'عمل',
     'add_new'=>'إضافة جديد',
 
     'desc'=>'وصف',
     'category'=>'تصنيف',
     'code'=>'كود',
     'name'=>'اسم',
+    'price_from'=>'السعر من',
+    'price_to'=>'السعر الى',
     'actions'=>'التحكم',
+
+
 
     'create'=>'إنشاء',
     'add'=>'إضافة',

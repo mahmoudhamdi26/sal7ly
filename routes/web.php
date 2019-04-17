@@ -81,3 +81,13 @@ Route::post('/services/create', 'ServicesController@postStore');
 Route::get('/services/edit/{id}', 'ServicesController@getEdit');
 Route::post('/services/edit/{id}', 'ServicesController@postUpdate');
 Route::get('/services/delete/{id}', 'ServicesController@getDestroy');
+
+//JobTypes
+Route::get('/job-types', 'JobTypeController@getIndex');
+Route::get('/job-types/index', 'JobTypeController@getIndex');
+Route::get('/job-types/show/{id}', 'JobTypeController@getShow');
+Route::get('/job-types/create', 'JobTypeController@getCreate');
+Route::post('/job-types/create', 'JobTypeController@postStore');
+Route::get('/job-types/edit/{id}', 'JobTypeController@getEdit');
+Route::post('/job-types/edit/{id}', 'JobTypeController@postUpdate');
+Route::get('/job-types/delete/{id}', 'JobTypeController@getDestroy');

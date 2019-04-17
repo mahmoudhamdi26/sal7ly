@@ -24,14 +24,14 @@
                     <span class="label label-important bubble-only pull-right "></span>
                 </a>
             </li>
-            <li>
-                <a href="javascript:;"> <i class="material-icons">apps</i> <span
-                            class="title">{{ @trans('labels.nav_countries') }}</span> <span class=" arrow"></span> </a>
-                <ul class="sub-menu">
-                    <li><a href="{{ action('CountryController@getIndex') }}">{{ @trans('labels.nav_list') }}</a></li>
-                    <li><a href="{{ action('CountryController@getCreate') }}">{{ @trans('labels.nav_create') }}</a></li>
-                </ul>
-            </li>
+{{--            <li>--}}
+{{--                <a href="javascript:;"> <i class="material-icons">apps</i> <span--}}
+{{--                            class="title">{{ @trans('labels.nav_countries') }}</span> <span class=" arrow"></span> </a>--}}
+{{--                <ul class="sub-menu">--}}
+{{--                    <li><a href="{{ action('CountryController@getIndex') }}">{{ @trans('labels.nav_list') }}</a></li>--}}
+{{--                    <li><a href="{{ action('CountryController@getCreate') }}">{{ @trans('labels.nav_create') }}</a></li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
             <li>
                 <a href="javascript:;"> <i class="material-icons">category</i> <span
                             class="title">{{ @trans('labels.nav_main_cats') }}</span> <span class=" arrow"></span> </a>
@@ -46,6 +46,14 @@
                 <ul class="sub-menu">
                     <li><a href="{{ action('ServicesController@getIndex') }}">{{ @trans('labels.nav_list') }}</a></li>
                     <li><a href="{{ action('ServicesController@getCreate') }}">{{ @trans('labels.nav_create') }}</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"> <i class="material-icons">apps</i> <span
+                            class="title">{{ @trans('labels.nav_job_types') }}</span> <span class=" arrow"></span> </a>
+                <ul class="sub-menu">
+                    <li><a href="{{ action('JobTypeController@getIndex') }}">{{ @trans('labels.nav_list') }}</a></li>
+                    <li><a href="{{ action('JobTypeController@getCreate') }}">{{ @trans('labels.nav_create') }}</a></li>
                 </ul>
             </li>
 
