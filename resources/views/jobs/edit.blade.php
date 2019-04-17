@@ -48,7 +48,7 @@
 
                                         <div class="form-group">
                                             <label class="form-label ">{{ trans('labels.name') }}</label>
-                                            <span class="help">e.g. "ثلاجات"</span>
+                                            <span class="help">e.g. "صيانة ثلاجات"</span>
                                             <div class="controls">
                                                 <input type="text" class="form-control" name="name"
                                                        value="{{ $model->name }}"
@@ -63,38 +63,53 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="form-label ">{{ trans('labels.category') }}</label>
-                                            {{--<span class="help">e.g. "سباكة "</span>--}}
+                                            <label class="form-label ">{{ trans('labels.price_from') }}</label>
+                                            <span class="help">e.g. "20"</span>
                                             <div class="controls">
-                                                <select name="category_id" class="form-control" required>
-                                                    @foreach($cats as $cat)
-                                                        <option value="{{$cat->id}}"
-                                                                @if($model->category_id==$cat->id)
-                                                                selected
-                                                                @endif
-                                                        >{{$cat->name}}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" class="form-control" name="price_from"
+                                                       value="{{ $model->price_from }}"
+                                                       required="">
 
-                                                @if ($errors->has('category_id'))
+                                                @if ($errors->has('price_from'))
                                                     <span class="help-block">
-                                                        <strong>{{ $errors->first('category_id') }}</strong>
+                                                        <strong>{{ $errors->first('price_from') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label ">{{ trans('labels.price_to') }}</label>
+                                            <span class="help">e.g. "50"</span>
+                                            <div class="controls">
+                                                <input type="text" class="form-control" name="price_to"
+                                                       value="{{ $model->price_to }}"
+                                                       required="">
+
+                                                @if ($errors->has('price_to'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('price_to') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>
                                         </div>
 
+
                                         <div class="form-group">
-                                            <label class="form-label ">{{ trans('labels.desc') }}</label>
-                                            {{--<span class="help">e.g. "سباكة "</span>--}}
+                                            <label class="form-label ">{{ trans('labels.service') }}</label>
                                             <div class="controls">
-                                                {{--                                                <input type="textarea" class="form-control" name="name"--}}
-                                                {{--                                                       value="{{ old('desc') }}"--}}
-                                                {{--                                                       required="">--}}
-                                                <textarea name="desc" class="form-control">{{$model->desc}}</textarea>
-                                                @if ($errors->has('desc'))
+                                                <select id="service_id" name="service_id" class="form-control" required>
+                                                    @foreach($services as $service)
+                                                        <option value="{{$service->id}}"
+                                                                @if($model->service_id==$service->id)
+                                                                selected
+                                                                @endif
+                                                        >{{$service->name}}</option>
+                                                    @endforeach
+                                                </select>
+
+                                                @if ($errors->has('service_id'))
                                                     <span class="help-block">
-                                                        <strong>{{ $errors->first('desc') }}</strong>
+                                                        <strong>{{ $errors->first('service_id') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>

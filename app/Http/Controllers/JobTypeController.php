@@ -66,7 +66,7 @@ class JobTypeController extends Controller
                 'name' => 'required|unique:service',
                 'service_id' => 'required|exists:service,id',
                 'price_from' => 'required|numeric|min:0',
-                'price_to' => 'required|numeric|min:0',
+                'price_to' => 'required|numeric|min:'.$request->input('price_from'),
             ]);
 
         DB::beginTransaction();
@@ -87,21 +87,6 @@ class JobTypeController extends Controller
         return redirect(action('JobTypeController@getIndex'));
     }
 
-    public function getShow($id)
-    {
-        if (Gate::denies('check-ability', 'Service|Show')) {
-            abort(403, 'Unauthorized action.');
-        }
-
-        $category = Category::findOrFail($id);
-        $sessionUser = Auth::user();
-        $cat_services = JobType::where('category_id', $id)->get();
-
-        print($cat_services);
-
-
-        return view('services.index', compact('sessionUser', 'category', 'cat_services'));
-    }
 
     public function getEdit($id)
     {
@@ -113,7 +98,7 @@ class JobTypeController extends Controller
         $sessionUser = Auth::user();
         $services = Service::orderBy('name')->get();
         $model = JobType::findOrFail($id);
-        return view('services.edit', compact('sessionUser', 'model', 'services'));
+        return view('jobs.edit', compact('sessionUser', 'model', 'services'));
     }
 
     public function postUpdate(Request $request, $id)
@@ -130,6 +115,9 @@ class JobTypeController extends Controller
         $this->validate($request,
             [
                 'name' => 'required|unique:service,name,' . $model->id,
+                'service_id' => 'required|exists:service,id',
+                'price_from' => 'required|numeric|min:0',
+                'price_to' => 'required|numeric|min:'.$request->input('price_from'),
             ]);
 
         try {
@@ -148,7 +136,7 @@ class JobTypeController extends Controller
 
         Session::flash('message', 'Item Updated!');
 
-        return redirect(action('ServicesController@getEdit', $model->id));
+        return redirect(action('JobTypeController@getEdit', $model->id));
     }
 
     public function getDestroy($id)
@@ -160,13 +148,8 @@ class JobTypeController extends Controller
         $sessionUser = Auth::user();
 
         try {
-            # delete leagues
             $item = JobType::where('id', $id)->first();
             $item->delete();
-            //// Logging
-            $logMsg = $sessionUser->name . " " . $sessionUser->lname . " Deleted Service $item->id";
-            $routeParts = explode('@', Route::getCurrentRoute()->getActionName());
-
 
         } catch (QueryException $ex) {
             if ($ex->getCode() == 23000) {
