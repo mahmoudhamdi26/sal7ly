@@ -60,9 +60,7 @@
                                 @foreach($items as $item)
                                     <tr>
                                         <td class="v-align-middle">
-                                            <a href="{{ action('ServicesController@getShow', $item->id) }}">
                                                 <span class="muted">{{ $item->name }}</span>
-                                            </a>
                                         </td>
                                         <td class="v-align-middle">
                                                 <span class="muted">{{ $item->category->name }}</span>

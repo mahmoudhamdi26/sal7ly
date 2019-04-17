@@ -85,21 +85,6 @@ class ServicesController extends Controller
         return redirect('services');
     }
 
-    public function getShow($id)
-    {
-        if (Gate::denies('check-ability', 'Service|Show')) {
-            abort(403, 'Unauthorized action.');
-        }
-
-        $category = Category::findOrFail($id);
-        $sessionUser = Auth::user();
-        $cat_services = Service::where('category_id', $id)->get();
-
-        print($cat_services);
-
-
-        return view('services.index', compact('sessionUser', 'category', 'cat_services'));
-    }
 
     public function getEdit($id)
     {

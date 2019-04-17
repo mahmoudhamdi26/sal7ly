@@ -88,24 +88,6 @@ class CountryController extends Controller {
 		return redirect( 'countries' );
 	}
 
-	public function getShow( $id ) {
-		if ( Gate::denies( 'check-ability', 'Countries|Show' ) ) {
-			abort( 403, 'Unauthorized action.' );
-		}
-
-
-		$sessionUser     = Auth::user();
-		$Country_leagues = CountryLeagues::where( 'country_id', $id )->get();
-		$leagues         = array();
-
-		foreach ( $Country_leagues as $key => $country_league ) {
-			$leagues[ $key ] = League::findOrFail( $country_league->league_id );
-		}
-
-		$model = Country::findOrFail( $id );
-
-		return view( 'countries.show', compact( 'sessionUser', 'model', 'leagues' ) );
-	}
 
 	public function getEdit( $id ) {
 		if ( Gate::denies( 'check-ability', 'Countries|Update' ) ) {

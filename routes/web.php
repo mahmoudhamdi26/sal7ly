@@ -50,21 +50,12 @@ Route::get('/accounts/edit-profile', 'AccountsController@getProfile');
 Route::post('/accounts/edit-profile', 'AccountsController@postUpdateProfile');
 Route::post('/accounts/update-profile-password', 'AccountsController@postUpdateProfilePassword');
 
-//Countries
-Route::get('/countries', 'CountryController@getIndex');
-Route::get('/countries/index', 'CountryController@getIndex');
-Route::get('/countries/show/{id}', 'CountryController@getShow');
-Route::get('/countries/create', 'CountryController@getCreate');
-Route::post('/countries/create', 'CountryController@postStore');
-Route::get('/countries/edit/{id}', 'CountryController@getEdit');
-Route::post('/countries/edit/{id}', 'CountryController@postUpdate');
-Route::get('/countries/delete/{id}', 'CountryController@getDestroy');
+
 
 
 //Categories
 Route::get('/categories', 'CategoryController@getIndex');
 Route::get('/categories/index', 'CategoryController@getIndex');
-Route::get('/categories/show/{id}', 'CategoryController@getShow');
 Route::get('/categories/create', 'CategoryController@getCreate');
 Route::post('/categories/create', 'CategoryController@postStore');
 Route::get('/categories/edit/{id}', 'CategoryController@getEdit');
@@ -75,7 +66,6 @@ Route::get('/categories/delete/{id}', 'CategoryController@getDestroy');
 //Services
 Route::get('/services', 'ServicesController@getIndex');
 Route::get('/services/index', 'ServicesController@getIndex');
-Route::get('/services/show/{id}', 'ServicesController@getShow');
 Route::get('/services/create', 'ServicesController@getCreate');
 Route::post('/services/create', 'ServicesController@postStore');
 Route::get('/services/edit/{id}', 'ServicesController@getEdit');
@@ -85,7 +75,6 @@ Route::get('/services/delete/{id}', 'ServicesController@getDestroy');
 //JobTypes
 Route::get('/job-types', 'JobTypeController@getIndex');
 Route::get('/job-types/index', 'JobTypeController@getIndex');
-Route::get('/job-types/show/{id}', 'JobTypeController@getShow');
 Route::get('/job-types/create', 'JobTypeController@getCreate');
 Route::post('/job-types/create', 'JobTypeController@postStore');
 Route::get('/job-types/edit/{id}', 'JobTypeController@getEdit');

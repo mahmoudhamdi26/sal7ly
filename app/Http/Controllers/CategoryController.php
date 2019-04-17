@@ -77,20 +77,6 @@ class CategoryController extends Controller {
         return redirect( 'categories' );
     }
 
-    public function getShow( $id ) {
-        if ( Gate::denies( 'check-ability', 'Service|Show' ) ) {
-            abort( 403, 'Unauthorized action.' );
-        }
-
-        $category = Category::findOrFail( $id );
-        $sessionUser     = Auth::user();
-        $cat_services = Service::where( 'category_id', $id )->get();
-
-        print($cat_services);
-
-
-        return view( 'services.index', compact( 'sessionUser', 'category', 'cat_services' ) );
-    }
 
     public function getEdit( $id ) {
         if ( Gate::denies( 'check-ability', 'Service|Update' ) ) {

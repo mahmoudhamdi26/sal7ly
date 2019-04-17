@@ -58,9 +58,7 @@
                                 @foreach($items as $item)
                                     <tr>
                                         <td class="v-align-middle">
-                                            <a href="{{ action('CategoryController@getShow', $item->id) }}">
                                                 <span class="muted">{{ $item->name }}</span>
-                                            </a>
                                         </td>
                                         <td class="v-align-middle">
                                             <div class="btn-group">
