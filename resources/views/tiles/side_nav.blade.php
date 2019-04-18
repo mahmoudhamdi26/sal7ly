@@ -57,6 +57,14 @@
                 </ul>
             </li>
 
+            <li>
+                <a href="javascript:;"> <i class="material-icons">apps</i> <span
+                            class="title">{{ @trans('labels.nav_job_reqs') }}</span> <span class=" arrow"></span> </a>
+                <ul class="sub-menu">
+                    <li><a href="{{ action('JobReqController@getIndex') }}">{{ @trans('labels.nav_list') }}</a></li>
+                </ul>
+            </li>
+
         </ul>
 
         <div class="clearfix"></div>

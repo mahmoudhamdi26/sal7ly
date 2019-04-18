@@ -164,6 +164,6 @@ class JobTypeController extends Controller
 
         Session::flash('message', 'Item deleted!');
 
-        return Redirect::to(action('ServiceController@getIndex'));
+        return Redirect::to(action('JobTypeController@getIndex'));
     }
 }

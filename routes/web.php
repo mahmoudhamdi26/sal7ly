@@ -80,3 +80,9 @@ Route::post('/job-types/create', 'JobTypeController@postStore');
 Route::get('/job-types/edit/{id}', 'JobTypeController@getEdit');
 Route::post('/job-types/edit/{id}', 'JobTypeController@postUpdate');
 Route::get('/job-types/delete/{id}', 'JobTypeController@getDestroy');
+
+
+//JobRequests
+Route::get('/job-requests', 'JobReqController@getIndex');
+Route::get('/job-requests/index', 'JobReqController@getIndex');
+Route::get('/job-requests/delete/{id}', 'JobReqController@getDestroy');
