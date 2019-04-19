@@ -22,6 +22,9 @@ Route::post('/login', 'AuthController@login');
 Route::post('/logout', 'AuthController@logout');
 
 Route::get('/requests', 'JobRequestController@all')->name('requests.all');
-Route::post('/request', 'JobRequestController@store')->name('requests.store');
-Route::put('/request/{id}', 'JobRequestController@update')->name('requests.update');
-Route::delete('/request/{id}', 'JobRequestController@destroy')->name('requests.destroy');
+Route::post('/requests', 'JobRequestController@store')->name('requests.store');
+Route::put('/requests/{id}', 'JobRequestController@update')->name('requests.update');
+Route::delete('/requests/{id}', 'JobRequestController@destroy')->name('requests.destroy');
+
+Route::get('/categories', 'JobRequestController@cats')->name('categories.all');
+Route::get('/categories/{id}/services', 'JobRequestController@services')->name('services.all');

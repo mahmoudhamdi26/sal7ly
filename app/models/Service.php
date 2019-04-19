@@ -24,4 +24,8 @@ class Service extends Model
         return $this->belongsTo('App\models\Category', 'category_id');
     }
 
+    public function job_types()
+    {
+        return $this->hasMany("App\models\JobType");
+    }
 }

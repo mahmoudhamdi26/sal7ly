@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\models\Category;
 use App\models\Country;
 use App\models\JobRequest;
+use App\models\Service;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -29,6 +31,30 @@ class JobRequestController extends Controller
         $jobOrders = $request->user()->job_requests()->with('job_type', 'job_type.service')->
         orderby('created_at', 'DESC')->get();
         return response()->json(['requests' => $jobOrders, 'user' => $request->user()]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function cats(Request $request)
+    {
+        $cats = Category::orderBy('name')->get();
+        return response()->json(['categories' => $cats]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function services(Request $request, $id)
+    {
+        $services = Service::where('category_id',$id)->orderBy('name')->with('job_types')->get();
+        return response()->json(['services' => $services]);
     }
 
     /**
