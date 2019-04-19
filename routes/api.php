@@ -20,3 +20,8 @@ use Illuminate\Http\Request;
 Route::post('/register', 'AuthController@register');
 Route::post('/login', 'AuthController@login');
 Route::post('/logout', 'AuthController@logout');
+
+Route::get('/requests', 'JobRequestController@all')->name('requests.all');
+Route::post('/request', 'JobRequestController@store')->name('requests.store');
+Route::put('/request/{id}', 'JobRequestController@update')->name('requests.update');
+Route::delete('/request/{id}', 'JobRequestController@destroy')->name('requests.destroy');
