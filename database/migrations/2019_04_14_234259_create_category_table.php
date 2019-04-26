@@ -16,6 +16,7 @@ class CreateCategoryTable extends Migration
         Schema::create('category', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 255)->unique();
+            $table->string('icon_url', 255)->nullable();
             $table->timestamps();
         });
     }

@@ -59,8 +59,17 @@
                                                 @endif
                                             </div>
                                         </div>
-
-
+                                        <div class="form-group">
+                                            <label class="form-label ">{{ trans('labels.icon') }}</label>
+                                            <div class="controls">
+                                                <input type="file" name="icon" id="cat_icon">
+                                                @if ($errors->has('icon'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('icon') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
                                         <div class="form-actions">
                                             <div class="pull-right">
                                                 <button class="btn btn-success btn-cons" type="submit"><i

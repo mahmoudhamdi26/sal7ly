@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 
 class CategoryController extends Controller {
@@ -70,7 +71,12 @@ class CategoryController extends Controller {
             Session::flash( 'alert-class', 'danger' );
             return Redirect::back()->withInput();
         }
-
+        if($request->file('icon')) {
+            $path = $request->file('icon')->storeAs(
+                'public/icons', uniqid('cat_')
+            );
+            $item->update(['icon_url' => Storage::url($path)]);
+        }
         DB::commit();
         Session::flash( 'message', 'Category added!' );
 
@@ -124,7 +130,12 @@ class CategoryController extends Controller {
         }
 
         Session::flash( 'message', 'Item Updated!' );
-
+        if($request->file('icon')) {
+            $path = $request->file('icon')->storeAs(
+                'public/icons', uniqid('cat_')
+            );
+            $model->update(['icon_url' => Storage::url($path)]);
+        }
         return redirect( action( 'CategoryController@getEdit', $model->id ) );
     }
 

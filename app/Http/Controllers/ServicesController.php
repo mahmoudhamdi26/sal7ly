@@ -81,7 +81,13 @@ class ServicesController extends Controller
 
         DB::commit();
         Session::flash('message', 'Service added!');
+        if($request->file('icon')) {
+            $path = $request->file('icon')->storeAs(
+                'public/icons', uniqid('cat_')
+            );
+            $item->update(['icon_url' => $path]);
 
+        }
         return redirect('services');
     }
 
@@ -128,7 +134,12 @@ class ServicesController extends Controller
 
             return Redirect::back()->withInput();
         }
-
+        if($request->file('icon')) {
+            $path = $request->file('icon')->storeAs(
+                'public/icons', uniqid('cat_')
+            );
+            $model->update(['icon_url' => $path]);
+        }
         Session::flash('message', 'Item Updated!');
 
         return redirect(action('ServicesController@getEdit', $model->id));

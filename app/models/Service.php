@@ -11,7 +11,7 @@ class Service extends Model
 
     var $table = 'service';
 
-    var $fillable = ['id', 'name', 'desc', 'category_id'];
+    var $fillable = ['id', 'name', 'desc', 'category_id', 'icon_url'];
 
     var $hidden = ['created_at', 'updated_at'];
 

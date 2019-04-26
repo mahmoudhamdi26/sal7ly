@@ -86,3 +86,5 @@ Route::get('/job-types/delete/{id}', 'JobTypeController@getDestroy');
 Route::get('/job-requests', 'JobReqController@getIndex');
 Route::get('/job-requests/index', 'JobReqController@getIndex');
 Route::get('/job-requests/delete/{id}', 'JobReqController@getDestroy');
+
+Route::get('images/{image}', 'ImageController@getImage');

@@ -50,17 +50,27 @@
                                             <span class="help">e.g. "سباكة "</span>
                                             <div class="controls">
                                                 <input type="text" class="form-control" name="name"
-                                                       value="{{ old('name') }}"
-                                                       required="">
+                                                       value="{{ old('name') }}" required="">
 
                                                 @if ($errors->has('name'))
                                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                                        <strong>{{ $errors->first('name') }}</strong>
+                                                    </span>
                                                 @endif
                                             </div>
                                         </div>
 
+                                        <div class="form-group">
+                                            <label class="form-label ">{{ trans('labels.icon') }}</label>
+                                            <div class="controls">
+                                                <input type="file" name="icon" id="cat_icon" value="{{old("icon")}}">
+                                            @if ($errors->has('icon'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('icon') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
 
                                         <div class="form-actions">
                                             <div class="pull-right">

@@ -10,7 +10,7 @@ class Category extends Model {
 
     var $table = 'category';
 
-    var $fillable = [ 'id', 'name' ];
+    var $fillable = [ 'id', 'name', 'icon_url' ];
 
     var $hidden = [ 'created_at', 'updated_at' ];
 
