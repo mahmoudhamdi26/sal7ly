@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 
 Route::post('/register', 'AuthController@register');
 Route::post('/login', 'AuthController@login');
+Route::get('/refresh', 'AuthController@refresh');
 Route::post('/logout', 'AuthController@logout');
 
 Route::get('/requests', 'JobRequestController@all')->name('requests.all');
