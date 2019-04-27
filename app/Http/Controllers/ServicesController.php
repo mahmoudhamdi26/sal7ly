@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 
 class ServicesController extends Controller
@@ -85,7 +86,7 @@ class ServicesController extends Controller
             $path = $request->file('icon')->storeAs(
                 'public/icons', uniqid('cat_')
             );
-            $item->update(['icon_url' => $path]);
+            $item->update(['icon_url' => Storage::url($path)]);
 
         }
         return redirect('services');
@@ -138,7 +139,7 @@ class ServicesController extends Controller
             $path = $request->file('icon')->storeAs(
                 'public/icons', uniqid('cat_')
             );
-            $model->update(['icon_url' => $path]);
+            $model->update(['icon_url' => Storage::url($path)]);
         }
         Session::flash('message', 'Item Updated!');
 
@@ -175,6 +176,6 @@ class ServicesController extends Controller
 
         Session::flash('message', 'Item deleted!');
 
-        return Redirect::to(action('ServiceController@getIndex'));
+        return Redirect::to(action('ServicesController@getIndex'));
     }
 }

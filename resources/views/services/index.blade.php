@@ -52,6 +52,7 @@
                                 <tr>
                                     <th style="width:9%">{{ trans('labels.name') }}</th>
                                     <th style="width:9%">{{ trans('labels.category') }}</th>
+                                    <th style="width:9%">{{ trans('labels.icon') }}</th>
                                     <th style="width:9%">{{ trans('labels.desc') }}</th>
                                     <th style="width:9%">{{ trans('labels.actions') }}</th>
                                 </tr>
@@ -64,6 +65,9 @@
                                         </td>
                                         <td class="v-align-middle">
                                                 <span class="muted">{{ $item->category->name }}</span>
+                                        </td>
+                                        <td class="v-align-middle">
+                                            <img src="{{$item->icon_url}}" height="28px">
                                         </td>
                                         <td class="v-align-middle">
                                             <span class="muted">{{ $item->desc }}</span>
