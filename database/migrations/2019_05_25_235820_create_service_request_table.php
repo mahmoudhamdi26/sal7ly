@@ -19,9 +19,13 @@ class CreateServiceRequestTable extends Migration
             $table->timestamps();
             $table->dateTime("needed_at");
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('job_type_id');
+            $table->unsignedBigInteger('job_type_id')->nullable();
+            $table->unsignedBigInteger('service_id');
+            $table->unsignedBigInteger('device_type_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('job_type_id')->references('id')->on('job_type')->onDelete('cascade');
+            $table->foreign('job_type_id')->references('id')->on('job_type')->onDelete('set null');
+            $table->foreign('service_id')->references('id')->on('service')->onDelete('cascade');
+            $table->foreign('device_type_id')->references('id')->on('device_type')->onDelete('set null');
 
         });
     }

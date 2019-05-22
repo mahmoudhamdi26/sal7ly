@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 255);
             $table->string('mobile', 15)->nullable();
+            $table->string('confirm_code', 6)->nullable();
+            $table->boolean('is_mobile_confirmed')->default(false);
             $table->string('address')->nullable();
             $table->string('email', 255)->unique();
             $table->timestamp('email_verified_at')->nullable();
