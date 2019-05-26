@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class AuthController extends Controller
@@ -67,7 +68,7 @@ class AuthController extends Controller
 
         $token = JWTAuth::fromUser($user);
 
-        return response()->json(compact('user', 'token'), 201);
+        return response()->json(compact('user', 'token'), 200);
     }
 
     public function getAuthenticatedUser()
@@ -78,21 +79,69 @@ class AuthController extends Controller
                 return response()->json(['user_not_found'], 404);
             }
 
-        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+        } catch (TokenExpiredException $e) {
 
             return response()->json(['token_expired'], $e->getStatusCode());
 
-        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+        } catch (TokenInvalidException $e) {
 
             return response()->json(['token_invalid'], $e->getStatusCode());
 
-        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+        } catch (JWTException $e) {
 
             return response()->json(['token_absent'], $e->getStatusCode());
 
         }
 
         return response()->json(compact('user'));
+    }
+
+    public function confirm_mobile(Request $request)
+    {
+        $user = JWTAuth::parseToken()->authenticate();
+        $this->validate($request,
+            [
+                'pin' => 'required|regex:/^[0-9]{4}$/',
+            ]);
+
+
+        if ($user->confirm_code == $request->pin) {
+            $user->is_mobile_confirmed = true;
+            $user->save();
+            return response()->json(['message' => 'mobile confirmed successfully']);
+        }
+
+        return response()->json(['pin' => 'code does not match the sent code'], 402);
+
+    }
+
+    public function update(Request $request)
+    {
+        $user = JWTAuth::parseToken()->authenticate();
+        $this->validate($request,
+            [
+                'mobile' => 'regex:/(01)[0-9]{9}/',
+                'name' => 'string',
+                'address' => 'string',
+                'email' => 'string|email|max:255|unique:users,email,' . $user->id,
+            ]);
+
+        if ($request->has('mobile')) {
+            $this->sendSms($user);
+        }
+
+        $inputs = $request->only(['mobile', 'name', 'address', 'email']);
+        $user->update($inputs);
+
+        return response()->json(['user' => $user]);
+    }
+
+    private function sendSms($user)
+    {
+        $pin = mt_rand(1000, 9999);
+        $user->confirm_code = $pin;
+        $user->save();
+        #TODO send the pin to user for confirmation
     }
 
 }

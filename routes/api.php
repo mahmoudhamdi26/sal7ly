@@ -21,6 +21,8 @@ Route::post('/register', 'AuthController@register');
 Route::post('/login', 'AuthController@login');
 Route::get('/refresh', 'AuthController@refresh');
 Route::post('/logout', 'AuthController@logout');
+Route::post('/user/update', 'AuthController@update');
+Route::post('/user/mobile/confirm', 'AuthController@confirm_mobile');
 
 Route::get('/requests', 'JobRequestController@all')->name('requests.all');
 Route::post('/requests', 'JobRequestController@store')->name('requests.store');
