@@ -14,6 +14,7 @@ return [
     'nav_services'=>'الخدمات الفرعيه',
     'nav_job_types'=>'اعمال الخدمات',
     'nav_job_reqs'=>'طلبات الخدمات',
+    'nav_devices'=>'نوع الجهاز',
     'nav_list'=>'عرض القائمة',
     'nav_create'=>'اضافة جديد',
     'nav_logout'=>'تسجيل الخروج',
@@ -23,6 +24,7 @@ return [
     'categories'=>'الخدمات',
     'services'=>'الخدمات',
     'service'=>'خدمه',
+    'company'=>'الشركه',
     'job'=>'عمل',
     'add_new'=>'إضافة جديد',
 

@@ -56,6 +56,14 @@
                     <li><a href="{{ action('JobTypeController@getCreate') }}">{{ @trans('labels.nav_create') }}</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="javascript:;"> <i class="material-icons">apps</i> <span
+                            class="title">{{ @trans('labels.nav_devices') }}</span> <span class=" arrow"></span> </a>
+                <ul class="sub-menu">
+                    <li><a href="{{ action('DeviceTypeController@getIndex') }}">{{ @trans('labels.nav_list') }}</a></li>
+                    <li><a href="{{ action('DeviceTypeController@getCreate') }}">{{ @trans('labels.nav_create') }}</a></li>
+                </ul>
+            </li>
 
             <li>
                 <a href="javascript:;"> <i class="material-icons">apps</i> <span
@@ -64,6 +72,7 @@
                     <li><a href="{{ action('JobReqController@getIndex') }}">{{ @trans('labels.nav_list') }}</a></li>
                 </ul>
             </li>
+
 
         </ul>
 
