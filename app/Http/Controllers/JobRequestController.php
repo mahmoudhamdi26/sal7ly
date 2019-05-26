@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\models\Category;
 use App\models\Country;
 use App\models\JobRequest;
+use App\models\Problem;
 use App\models\Service;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -85,6 +86,21 @@ class JobRequestController extends Controller
             'status' => 1,
             'message' => 'Great success! New Job request created',
             'job_request' => $req,
+        ]);
+    }
+    public function storeProblem(Request $request)
+    {
+        $user = $request->user();
+        $request->validate([
+            'desc' => 'required|string',
+        ]);
+
+        $request->request->set('user_id', $user->id);
+        $req = Problem::create($request->all());
+
+        return response()->json([
+            'status' => 1,
+            'message' => 'Great success! New Job request created',
         ]);
     }
 

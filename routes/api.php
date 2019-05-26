@@ -26,6 +26,7 @@ Route::post('/user/mobile/confirm', 'AuthController@confirm_mobile');
 
 Route::get('/requests', 'JobRequestController@all')->name('requests.all');
 Route::post('/requests', 'JobRequestController@store')->name('requests.store');
+Route::post('/problems', 'JobRequestController@storeProblem')->name('requests.storeProblem');
 Route::put('/requests/{id}', 'JobRequestController@update')->name('requests.update');
 Route::delete('/requests/{id}', 'JobRequestController@destroy')->name('requests.destroy');
 
