@@ -126,7 +126,7 @@ class AuthController extends Controller
                 'email' => 'string|email|max:255|unique:users,email,' . $user->id,
             ]);
 
-        if ($request->has('mobile')) {
+        if ($request->has('mobile') && $request->mobile != $user->mobile) {
             $this->sendSms($user);
         }
 

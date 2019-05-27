@@ -68,7 +68,7 @@
                                             <span class="muted">{{ $item->user->mobile }}</span>
                                         </td>
                                         <td class="v-align-middle">
-                                                <span class="muted">{{ $item->job_type->name }}</span>
+                                                <span class="muted"> @if($item->job_type){{$item->job_type->name}}@endif </span>
                                         </td>
                                         <td class="v-align-middle">
                                             <span class="muted">{{ $item->needed_at }}</span>

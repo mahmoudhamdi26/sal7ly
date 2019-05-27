@@ -29,7 +29,7 @@ class JobRequestController extends Controller
      */
     public function all(Request $request)
     {
-        $jobOrders = $request->user()->job_requests()->with('job_type', 'job_type.service')->
+        $jobOrders = $request->user()->job_requests()->with('job_type', 'service')->
         orderby('created_at', 'DESC')->get();
         return response()->json(['requests' => $jobOrders, 'user' => $request->user()]);
     }
@@ -69,8 +69,10 @@ class JobRequestController extends Controller
         $user = $request->user();
         $request->validate([
             'desc' => 'nullable',
-            'job_type_id' => 'required|exists:job_type,id',
-            'needed_at' => 'required|date|after_or_equal:' . Carbon::now()
+            'job_type_id' => 'nullable|exists:job_type,id',
+            'service_id' => 'required|exists:service,id',
+            'device_type_id' => 'nullable|exists:device_type,id',
+            'needed_at' => 'required|date_format:Y-m-d H:i:s'
         ]);
 
         if (!isset($user->address) || !isset($user->mobile)) {
