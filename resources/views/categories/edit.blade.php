@@ -42,7 +42,7 @@
                             <br>
                             <div class="row">
                                 <form class="" role="form" enctype="multipart/form-data"
-                                      method="POST" action="{{ action('ServicesController@postUpdate', $model->id) }}">
+                                      method="POST" action="{{ action('CategoryController@postUpdate', $model->id) }}">
                                     {!! csrf_field() !!}
                                     <div class="col-md-8 col-sm-8 col-xs-8">
                                         <div class="form-group">
@@ -75,7 +75,7 @@
                                                 <button class="btn btn-success btn-cons" type="submit"><i
                                                             class="icon-ok"></i> Save
                                                 </button>
-                                                <a href="{{ action('ServicesController@getIndex') }}">
+                                                <a href="{{ action('CategoryController@getIndex') }}">
                                                     <button class="btn btn-white btn-cons" type="button">Cancel</button>
                                                 </a>
                                             </div>
