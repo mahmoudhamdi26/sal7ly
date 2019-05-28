@@ -54,7 +54,7 @@ class JobRequestController extends Controller
      */
     public function services(Request $request, $id)
     {
-        $services = Service::where('category_id',$id)->orderBy('name')->with('job_types')->get();
+        $services = Service::where('category_id', $id)->orderBy('name')->with('job_types', 'device_types')->get();
         return response()->json(['services' => $services]);
     }
 
@@ -90,6 +90,7 @@ class JobRequestController extends Controller
             'job_request' => $req,
         ]);
     }
+
     public function storeProblem(Request $request)
     {
         $user = $request->user();

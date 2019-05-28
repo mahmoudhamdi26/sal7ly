@@ -28,4 +28,9 @@ class Service extends Model
     {
         return $this->hasMany("App\models\JobType");
     }
+
+    public function device_types()
+    {
+        return $this->hasMany("App\models\Device");
+    }
 }
