@@ -50,11 +50,12 @@
                             <table class="table no-more-tables">
                                 <thead>
                                 <tr>
-                                    <th style="width:9%">{{ trans('labels.username') }}</th>
+                                    <th style="width:12%">{{ trans('labels.username') }}</th>
                                     <th style="width:9%">{{ trans('labels.mobile') }}</th>
                                     <th style="width:9%">{{ trans('labels.job_type') }}</th>
+                                    <th style="width:9%">{{ trans('labels.company') }}</th>
                                     <th style="width:9%">{{ trans('labels.needed_at') }}</th>
-                                    <th style="width:9%">{{ trans('labels.desc') }}</th>
+                                    <th style="width:18%">{{ trans('labels.desc') }}</th>
                                     <th style="width:9%">{{ trans('labels.actions') }}</th>
                                 </tr>
                                 </thead>
@@ -69,6 +70,9 @@
                                         </td>
                                         <td class="v-align-middle">
                                             <span class="muted"> @if($item->job_type){{$item->job_type->name}} @else {{$item->service->name}} @endif </span>
+                                        </td>
+                                        <td class="v-align-middle">
+                                            <span class="muted">@if($item->device_type){{ $item->device_type->company }}@endif</span>
                                         </td>
                                         <td class="v-align-middle">
                                             <span class="muted">{{ $item->needed_at }}</span>
