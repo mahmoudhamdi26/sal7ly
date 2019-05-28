@@ -72,7 +72,7 @@ class JobRequestController extends Controller
             'job_type_id' => 'nullable|exists:job_type,id',
             'service_id' => 'required|exists:service,id',
             'device_type_id' => 'nullable|exists:device_type,id',
-            'needed_at' => 'required|date_format:Y-m-d H:i:s'
+            'needed_at' => 'required'
         ]);
 
         if (!isset($user->address) || !isset($user->mobile)) {
