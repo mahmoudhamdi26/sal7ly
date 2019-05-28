@@ -79,7 +79,7 @@
                                         <td class="v-align-middle">
                                             <div class="btn-group">
                                                 <a onclick="return confirm('Are you sure you want to delete this item?');"
-                                                   href="{{ action('JobTypeController@getDestroy', $item->id ) }}"
+                                                   href="{{ action('JobReqController@getDestroy', $item->id ) }}"
                                                    class="btn btn-primary"><i class="fa fa-remove"></i></a>
                                             </div>
                                         </td>
