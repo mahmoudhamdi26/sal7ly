@@ -39,7 +39,7 @@ class JobReqController extends Controller
 //            $itemsQ = $itemsQ->orWhere('abbreviation', 'like', strtoupper(Input::get('name') . '%'));
 //        }
 //        $items = $itemsQ->paginate(20);
-        $items = JobRequest::whereDate('created_at', Carbon::today())->orderBy('created_at', 'DESC')->get();
+        $items = JobRequest::orderBy('created_at', 'DESC')->get();
 
         return View::make('requests.index', compact('items'));
     }

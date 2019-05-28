@@ -21,16 +21,16 @@
                 <li><a href="#" class="active">{{ @trans('labels.nav_job_reqs') }}</a>
                 </li>
             </ul>
-{{--            <div class="page-title"><i class="icon-custom-left"></i>--}}
-{{--                <h3><span class="semi-bold">{{ @trans('labels.add_new') }}</span></h3>--}}
-{{--                <a class="nav-link text-muted" href="{{ action('JobTypeController@getCreate') }}"--}}
-{{--                   data-toggle_="modal" data-target_="#modal-new" title="{{ @trans('labels.add_new') }}">--}}
-{{--      				            <span class="">--}}
-{{--      				            	<i class="fa fa-fw fa-plus"></i>--}}
-{{--      				            	<span class="hidden-sm-down">{{trans('labels.add_new')}}</span>--}}
-{{--      				            </span>--}}
-{{--                </a>--}}
-{{--            </div>--}}
+            {{--            <div class="page-title"><i class="icon-custom-left"></i>--}}
+            {{--                <h3><span class="semi-bold">{{ @trans('labels.add_new') }}</span></h3>--}}
+            {{--                <a class="nav-link text-muted" href="{{ action('JobTypeController@getCreate') }}"--}}
+            {{--                   data-toggle_="modal" data-target_="#modal-new" title="{{ @trans('labels.add_new') }}">--}}
+            {{--      				            <span class="">--}}
+            {{--      				            	<i class="fa fa-fw fa-plus"></i>--}}
+            {{--      				            	<span class="hidden-sm-down">{{trans('labels.add_new')}}</span>--}}
+            {{--      				            </span>--}}
+            {{--                </a>--}}
+            {{--            </div>--}}
             <div class="row">
                 <div class="col-md-12">
                     <div class="grid simple ">
@@ -62,13 +62,13 @@
                                 @foreach($items as $item)
                                     <tr>
                                         <td class="v-align-middle">
-                                                <span class="muted">{{ $item->user->name }}</span>
+                                            <span class="muted">{{ $item->user->name }}</span>
                                         </td>
                                         <td class="v-align-middle">
                                             <span class="muted">{{ $item->user->mobile }}</span>
                                         </td>
                                         <td class="v-align-middle">
-                                                <span class="muted"> @if($item->job_type){{$item->job_type->name}}@endif </span>
+                                            <span class="muted"> @if($item->job_type){{$item->job_type->name}} @else {{$item->service->name}} @endif </span>
                                         </td>
                                         <td class="v-align-middle">
                                             <span class="muted">{{ $item->needed_at }}</span>
