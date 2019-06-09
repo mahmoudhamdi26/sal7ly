@@ -11,7 +11,7 @@ class JobRequest extends Model
 
     var $table = 'service_request';
 
-    var $fillable = ['id', 'desc', 'needed_at', 'job_type_id', 'user_id', 'service_id', 'device_type_id'];
+    var $fillable = ['id', 'desc', 'needed_at', 'job_type_id', 'user_id', 'service_id', 'device_type_id','done'];
 
     var $hidden = ['created_at', 'updated_at'];
 
