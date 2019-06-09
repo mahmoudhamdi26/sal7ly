@@ -7,6 +7,7 @@ use App\models\JobRequest;
 use App\models\JobType;
 use App\models\Service;
 use App\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,18 +33,32 @@ class JobReqController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-//        $itemsQ = JobType::orderBy('name');
-//        if (Input::has('name') && !empty(Input::get('name'))) {
-////			$itemsQ = $itemsQ->where( 'lower(name)', 'like', strtolower(Input::get( 'name' ) . '%') );
-//            $itemsQ = $itemsQ->whereRaw('LOWER(name) LIKE ? ', [trim(strtolower(Input::get('name'))) . '%']);
-//            $itemsQ = $itemsQ->orWhere('abbreviation', 'like', strtoupper(Input::get('name') . '%'));
-//        }
-//        $items = $itemsQ->paginate(20);
-        $items = JobRequest::orderBy('created_at', 'DESC')->get();
+        $itemsQ = JobRequest::orderBy('needed_at');
+        if (Input::has('from') && !empty(Input::get('from')))
+            $itemsQ = $itemsQ->whereDate('needed_at', '>=', Input::get('from'));
+        if (Input::has('to') && !empty(Input::get('to')))
+            $itemsQ = $itemsQ->whereDate('needed_at', '<=', Input::get('to'));
+        $items = $itemsQ->get();
 
         return View::make('requests.index', compact('items'));
     }
 
+    public function update(Request $request, $id)
+    {
+        if (Gate::denies('check-ability', 'Service|List')) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        try {
+            $model = JobRequest::findOrFail($id);
+            $model->done = $request->done == "true" ? 1 : 0;
+            $model->save();
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'update error'], 400);
+        }
+
+        return response()->json(['message' => 'updated successfully'], 200);
+    }
 
     public function getDestroy($id)
     {

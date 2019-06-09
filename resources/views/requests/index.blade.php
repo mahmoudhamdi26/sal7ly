@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link href="/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css">
+
+@endsection
 @section('content')
 
     <!-- BEGIN PAGE CONTAINER-->
@@ -12,6 +16,7 @@
             </div>
             <div class="modal-body">Widget settings form goes here</div>
         </div>
+
         <div class="clearfix"></div>
         <div class="content">
             <ul class="breadcrumb">
@@ -21,29 +26,41 @@
                 <li><a href="#" class="active">{{ @trans('labels.nav_job_reqs') }}</a>
                 </li>
             </ul>
-            {{--            <div class="page-title"><i class="icon-custom-left"></i>--}}
-            {{--                <h3><span class="semi-bold">{{ @trans('labels.add_new') }}</span></h3>--}}
-            {{--                <a class="nav-link text-muted" href="{{ action('JobTypeController@getCreate') }}"--}}
-            {{--                   data-toggle_="modal" data-target_="#modal-new" title="{{ @trans('labels.add_new') }}">--}}
-            {{--      				            <span class="">--}}
-            {{--      				            	<i class="fa fa-fw fa-plus"></i>--}}
-            {{--      				            	<span class="hidden-sm-down">{{trans('labels.add_new')}}</span>--}}
-            {{--      				            </span>--}}
-            {{--                </a>--}}
-            {{--            </div>--}}
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="grid simple ">
-                        <div class="grid-title no-border">
-                            <h4>Table <span class="semi-bold">Styles</span></h4>
-                            <div class="tools">
-                                <a href="javascript:;" class="collapse"></a>
-                                <a href="#grid-config" data-toggle="modal" class="config"></a>
-                                <a href="javascript:;" class="reload"></a>
-                                <a href="javascript:;" class="remove"></a>
-                            </div>
-                        </div>
+
                         <div class="grid-body no-border">
+                            <br><br>
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-offset-1 col-md-4">
+                                        <div class="input-append success date ">
+                                            <input autocomplete="off" type="text" class="span12" name="from"
+                                                   placeholder="التاريخ من">
+                                            <span class="add-on"><span class="arrow"></span><i
+                                                        class="icon-th"></i></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-offset-1 col-md-4">
+                                        <div class="input-append success date">
+                                            <input autocomplete="off" type="text" class="span12" name="to"
+                                                   placeholder="التاريخ الى">
+                                            <span class="add-on"><span class="arrow"></span><i
+                                                        class="icon-th"></i></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-2" style="max-height: 100%">
+                                        <button class="btn btn-success align-middle" type="submit">بحث</button>
+                                    </div>
+
+                                </div>
+                            </form>
+
+
                             <h3>
                                 <span class="semi-bold">{{ @trans('labels.table') .' '.  @trans('labels.nav_job_reqs') }}</span>
                             </h3>
@@ -56,12 +73,13 @@
                                     <th style="width:9%">{{ trans('labels.company') }}</th>
                                     <th style="width:9%">{{ trans('labels.needed_at') }}</th>
                                     <th style="width:18%">{{ trans('labels.desc') }}</th>
+                                    <th style="width:9%">{{ trans('labels.done') }}</th>
                                     <th style="width:9%">{{ trans('labels.actions') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($items as $item)
-                                    <tr>
+                                    <tr @if($item->done) class="bg-success" @endif>
                                         <td class="v-align-middle">
                                             <span class="muted">{{ $item->user->name }}</span>
                                         </td>
@@ -79,6 +97,10 @@
                                         </td>
                                         <td class="v-align-middle">
                                             <span class="muted">{{ $item->desc }}</span>
+                                        </td>
+                                        <td class="v-align-middle">
+                                            <input type="checkbox" @if($item->done) checked @endif class="muted"
+                                                   onchange="handleChanged({{$item->id}},this)"/>
                                         </td>
                                         <td class="v-align-middle">
                                             <div class="btn-group">
@@ -99,4 +121,29 @@
         <!-- END PAGE -->
     </div>
 
+@endsection
+@section('scripts')
+    <script src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script>
+
+        $('.input-append.date').datepicker({
+            orientation: "auto",
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        function handleChanged(id, elem) {
+
+            $.ajax({
+                url: "/job-requests/update/"+id,
+                method: "POST",
+                data:{"done":elem.checked,'_token': '{{csrf_token()}}'},
+                success: function (result) {
+                    $(elem).parent().parent().toggleClass('bg-success');
+                }
+            });
+        }
+
+    </script>
 @endsection
