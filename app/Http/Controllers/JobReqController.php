@@ -35,9 +35,9 @@ class JobReqController extends Controller
 
         $itemsQ = JobRequest::orderBy('needed_at');
         if (Input::has('from') && !empty(Input::get('from')))
-            $itemsQ->where('needed_at', '>=', Input::get('from'));
+            $itemsQ = $itemsQ->whereDate('needed_at', '>=', Input::get('from'));
         if (Input::has('to') && !empty(Input::get('to')))
-            $itemsQ->where('needed_at', '<=', Input::get('to'));
+            $itemsQ = $itemsQ->whereDate('needed_at', '<=', Input::get('to'));
         $items = $itemsQ->get();
 
         return View::make('requests.index', compact('items'));
@@ -51,7 +51,7 @@ class JobReqController extends Controller
 
         try {
             $model = JobRequest::findOrFail($id);
-            $model->done = $request->done == "true" ? 1:0 ;
+            $model->done = $request->done == "true" ? 1 : 0;
             $model->save();
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'update error'], 400);
