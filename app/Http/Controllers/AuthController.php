@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -14,6 +15,9 @@ use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class AuthController extends Controller
 {
+    use SendsPasswordResetEmails;
+
+
     public function __construct()
     {
         $this->middleware('auth:api')->except(['register', 'login', 'refresh']);
@@ -143,5 +147,19 @@ class AuthController extends Controller
         $user->save();
         #TODO send the pin to user for confirmation
     }
+
+    public function forget(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email|exists:users,email',
+        ]);
+
+        $this->sendResetLinkEmail($request);
+
+        return response()->json(
+            ['success' => 1]
+        );
+    }
+
 
 }
