@@ -69,11 +69,12 @@
                                 <tr>
                                     <th style="width:12%">{{ trans('labels.username') }}</th>
                                     <th style="width:9%">{{ trans('labels.mobile') }}</th>
+                                    <th style="width:9%">{{ trans('labels.address') }}</th>
                                     <th style="width:9%">{{ trans('labels.job_type') }}</th>
                                     <th style="width:9%">{{ trans('labels.company') }}</th>
                                     <th style="width:9%">{{ trans('labels.needed_at') }}</th>
                                     <th style="width:18%">{{ trans('labels.desc') }}</th>
-                                    <th style="width:9%">{{ trans('labels.done') }}</th>
+                                    <th style="width:7%">{{ trans('labels.done') }}</th>
                                     <th style="width:9%">{{ trans('labels.actions') }}</th>
                                 </tr>
                                 </thead>
@@ -85,6 +86,9 @@
                                         </td>
                                         <td class="v-align-middle">
                                             <span class="muted">{{ $item->user->mobile }}</span>
+                                        </td>
+                                        <td class="v-align-middle">
+                                            <span class="muted">{{ $item->user->address }}</span>
                                         </td>
                                         <td class="v-align-middle">
                                             <span class="muted"> @if($item->job_type){{$item->job_type->name}} @else {{$item->service->name}} @endif </span>
