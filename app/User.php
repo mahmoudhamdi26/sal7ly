@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Mail\PasswordResetMail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Mail;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
@@ -67,5 +69,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function job_requests(){
         return $this->hasMany("App\models\JobRequest");
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        Mail::send(new PasswordResetMail($this,$token));
     }
 }
