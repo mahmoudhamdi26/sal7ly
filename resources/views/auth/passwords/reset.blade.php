@@ -13,7 +13,7 @@
 
                             <input type="hidden" name="token" value="{{ $token }}">
 
-                            <input id="email" type="email" name="email" value="{{ $email}}">
+                            <input type="hidden" value="{{ urldecode(request()->get('email')) }}" name="email">
 
                             <div class="form-group row">
                                 <label for="password"
