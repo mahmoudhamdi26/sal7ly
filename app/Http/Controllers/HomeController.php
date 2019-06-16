@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (Gate::denies('check-ability', 'Service|Create')) {
+            abort(403, 'Unauthorized action.');
+        }
         return view('home');
     }
 }

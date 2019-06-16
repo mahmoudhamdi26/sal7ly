@@ -76,9 +76,7 @@ class LoginController extends Controller
 
 
     public function getLogin(){
-        if (Gate::denies('check-ability', 'Users|Create')) {
-            abort(403, 'Unauthorized action.');
-        }
+
 
         return View::make('login.login');
     }
