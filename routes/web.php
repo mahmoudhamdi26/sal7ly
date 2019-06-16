@@ -64,6 +64,15 @@ Route::get('/categories/edit/{id}', 'CategoryController@getEdit');
 Route::post('/categories/edit/{id}', 'CategoryController@postUpdate');
 Route::get('/categories/delete/{id}', 'CategoryController@getDestroy');
 
+//Users
+Route::get('/users', 'UsersController@getIndex');
+Route::get('/users/index', 'UsersController@getIndex');
+Route::get('/users/create', 'UsersController@getCreate');
+Route::post('/users/create', 'UsersController@postStore');
+Route::get('/users/edit/{id}', 'UsersController@getEdit');
+Route::post('/users/edit/{id}', 'UsersController@postUpdate');
+Route::get('/users/delete/{id}', 'UsersController@getDestroy');
+
 //DeviceType
 Route::get('/devices', 'DeviceTypeController@getIndex');
 Route::get('/devices/index', 'DeviceTypeController@getIndex');

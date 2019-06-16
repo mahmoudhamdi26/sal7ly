@@ -23,7 +23,8 @@ class AbilitiesFunctions {
         }
 
         $toParts= explode('|', $to);
-
+        if($user->is_staff && $toParts[0]=="Service")
+            return true;
         /// Getting user roles
         $user_roles_ids_result = DB::table('user_roles')
             ->select('roles_id')
