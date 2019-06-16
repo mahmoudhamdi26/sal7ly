@@ -72,6 +72,14 @@
                     <li><a href="{{ action('JobReqController@getIndex') }}">{{ @trans('labels.nav_list') }}</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="javascript:;"> <i class="material-icons">apps</i> <span
+                            class="title">{{ @trans('labels.users') }}</span> <span class=" arrow"></span> </a>
+                <ul class="sub-menu">
+                    <li><a href="{{ action('UsersController@getIndex') }}">{{ @trans('labels.nav_list') }}</a></li>
+                    <li><a href="{{ action('UsersController@getCreate') }}">{{ @trans('labels.nav_create') }}</a></li>
+                </ul>
+            </li>
 
 
         </ul>

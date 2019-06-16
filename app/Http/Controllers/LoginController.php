@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
@@ -75,6 +76,10 @@ class LoginController extends Controller
 
 
     public function getLogin(){
+        if (Gate::denies('check-ability', 'Users|Create')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         return View::make('login.login');
     }
 
