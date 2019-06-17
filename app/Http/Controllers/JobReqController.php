@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\models\Category;
 use App\models\JobRequest;
 use App\models\JobType;
+use App\models\Logs;
 use App\models\Service;
 use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -45,7 +46,7 @@ class JobReqController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (Gate::denies('check-ability', 'Service|List')) {
+        if (Gate::denies('check-ability', 'Service|Update')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -56,7 +57,9 @@ class JobReqController extends Controller
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'update error'], 400);
         }
-
+        $log_data=['action'=>'update','item_id'=>$model->id,'item_type'=>'category',
+            'user_id'=>$request->user()->id,'item_data'=>$model->toJson()];
+        Logs::create($log_data);
         return response()->json(['message' => 'updated successfully'], 200);
     }
 
@@ -84,7 +87,9 @@ class JobReqController extends Controller
         }
 
         Session::flash('message', 'Item deleted!');
-
+        $log_data=['action'=>'delete','item_id'=>$item->id,'item_type'=>'category',
+            'user_id'=>$sessionUser->id,'item_data'=>$item->toJson()];
+        Logs::create($log_data);
         return Redirect::to(action('JobReqController@getIndex'));
     }
 }

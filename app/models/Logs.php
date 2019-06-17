@@ -19,6 +19,9 @@ class Logs extends Model
 
     protected $dateFormat = 'Y-m-d H:i:s';
 
+    public function getItemDataAttribute($value) {
+        return json_decode($value,true);
+    }
 
     public function user()
     {

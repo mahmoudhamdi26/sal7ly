@@ -109,20 +109,6 @@
                     </ul>
                 </li>
                 <li class="quicklinks"><span class="h-seperate"></span></li>
-                <li class="quicklinks">
-                    <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span
-                                class="badge badge-important hide">1</span>
-                    </a>
-                    <div class="simple-chat-popup chat-menu-toggle hide">
-                        <div class="simple-chat-popup-arrow"></div>
-                        <div class="simple-chat-popup-inner">
-                            <div style="width:100px">
-                                <div class="semi-bold">David Nester</div>
-                                <div class="message">Hey you there</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
             </ul>
         </div>
         <!-- END CHAT TOGGLER -->

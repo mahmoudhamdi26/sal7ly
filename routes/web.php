@@ -108,3 +108,6 @@ Route::post('/job-requests/update/{id}', 'JobReqController@update');
 Route::get('/job-requests/delete/{id}', 'JobReqController@getDestroy');
 
 Route::get('images/{image}', 'ImageController@getImage');
+//Logs
+Route::get('/logs', 'LogsController@getIndex');
+Route::get('/logs/index', 'LogsController@getIndex');
