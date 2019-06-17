@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\models\Category;
+use App\models\Logs;
 use App\models\Service;
 use App\User;
 use Illuminate\Database\QueryException;
@@ -89,6 +90,9 @@ class ServicesController extends Controller
             $item->update(['icon_url' => Storage::url($path)]);
 
         }
+        $log_data=['action'=>'create','item_id'=>$item->id,'item_type'=>'service',
+            'user_id'=>$request->user()->id,'item_data'=>$item->toJson()];
+        Logs::create($log_data);
         return redirect('services');
     }
 
@@ -142,7 +146,9 @@ class ServicesController extends Controller
             $model->update(['icon_url' => Storage::url($path)]);
         }
         Session::flash('message', 'Item Updated!');
-
+        $log_data=['action'=>'update','item_id'=>$model->id,'item_type'=>'service',
+            'user_id'=>$request->user()->id,'item_data'=>$model->toJson()];
+        Logs::create($log_data);
         return redirect(action('ServicesController@getEdit', $model->id));
     }
 
@@ -175,7 +181,9 @@ class ServicesController extends Controller
         }
 
         Session::flash('message', 'Item deleted!');
-
+        $log_data=['action'=>'delete','item_id'=>$item->id,'item_type'=>'service',
+            'user_id'=>$sessionUser->id,'item_data'=>$item->toJson()];
+        Logs::create($log_data);
         return Redirect::to(action('ServicesController@getIndex'));
     }
 }

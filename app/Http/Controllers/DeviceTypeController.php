@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\models\Device;
+use App\models\Logs;
 use App\models\Service;
 use App\User;
 use Illuminate\Database\QueryException;
@@ -75,7 +76,9 @@ class DeviceTypeController extends Controller {
 
         DB::commit();
         Session::flash( 'message', 'Device added!' );
-
+        $log_data=['action'=>'create','item_id'=>$item->id,'item_type'=>'device_type',
+            'user_id'=>$request->user()->id,'item_data'=>$item->toJson()];
+        Logs::create($log_data);
         return redirect( 'devices' );
     }
 
@@ -89,7 +92,8 @@ class DeviceTypeController extends Controller {
         $sessionUser = Auth::user();
 
         $model           = Device::findOrFail( $id );
-        return view( 'devices.edit', compact( 'sessionUser', 'model') );
+        $services = Service::orderBy('name')->get();
+        return view( 'devices.edit', compact( 'sessionUser', 'model','services') );
     }
 
     public function postUpdate( Request $request, $id ) {
@@ -126,6 +130,9 @@ class DeviceTypeController extends Controller {
         }
 
         Session::flash( 'message', 'Item Updated!' );
+        $log_data=['action'=>'update','item_id'=>$model->id,'item_type'=>'device_type',
+            'user_id'=>$request->user()->id,'item_data'=>$model->toJson()];
+        Logs::create($log_data);
         return redirect( action( 'DeviceTypeController@getEdit', $model->id ) );
     }
 
@@ -157,7 +164,9 @@ class DeviceTypeController extends Controller {
         }
 
         Session::flash( 'message', 'Item deleted!' );
-
+        $log_data=['action'=>'delete','item_id'=>$item->id,'item_type'=>'device_type',
+            'user_id'=>$sessionUser->id,'item_data'=>$item->toJson()];
+        Logs::create($log_data);
         return Redirect::to( action( 'DeviceTypeController@getIndex' ) );
     }
 }

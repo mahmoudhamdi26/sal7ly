@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\models\Category;
 use App\models\JobType;
+use App\models\Logs;
 use App\models\Service;
 use App\User;
 use Illuminate\Database\QueryException;
@@ -83,7 +84,9 @@ class JobTypeController extends Controller
 
         DB::commit();
         Session::flash('message', 'JobType added!');
-
+        $log_data=['action'=>'create','item_id'=>$item->id,'item_type'=>'job_type',
+            'user_id'=>$request->user()->id,'item_data'=>$item->toJson()];
+        Logs::create($log_data);
         return redirect(action('JobTypeController@getIndex'));
     }
 
@@ -135,7 +138,9 @@ class JobTypeController extends Controller
         }
 
         Session::flash('message', 'Item Updated!');
-
+        $log_data=['action'=>'update','item_id'=>$model->id,'item_type'=>'job_type',
+            'user_id'=>$request->user()->id,'item_data'=>$model->toJson()];
+        Logs::create($log_data);
         return redirect(action('JobTypeController@getEdit', $model->id));
     }
 
@@ -163,7 +168,9 @@ class JobTypeController extends Controller
         }
 
         Session::flash('message', 'Item deleted!');
-
+        $log_data=['action'=>'delete','item_id'=>$item->id,'item_type'=>'job_type',
+            'user_id'=>$sessionUser->id,'item_data'=>$item->toJson()];
+        Logs::create($log_data);
         return Redirect::to(action('JobTypeController@getIndex'));
     }
 }

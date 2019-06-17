@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\models\Category;
+use App\models\Logs;
 use App\models\Service;
 use App\User;
 use Illuminate\Database\QueryException;
@@ -80,6 +81,9 @@ class CategoryController extends Controller {
         DB::commit();
         Session::flash( 'message', 'Category added!' );
 
+        $log_data=['action'=>'create','item_id'=>$item->id,'item_type'=>'category',
+            'user_id'=>$request->user()->id,'item_data'=>$item->toJson()];
+        Logs::create($log_data);
         return redirect( 'categories' );
     }
 
@@ -136,6 +140,9 @@ class CategoryController extends Controller {
             );
             $model->update(['icon_url' => Storage::url($path)]);
         }
+        $log_data=['action'=>'update','item_id'=>$model->id,'item_type'=>'category',
+            'user_id'=>$request->user()->id,'item_data'=>$model->toJson()];
+        Logs::create($log_data);
         return redirect( action( 'CategoryController@getEdit', $model->id ) );
     }
 
@@ -167,7 +174,9 @@ class CategoryController extends Controller {
         }
 
         Session::flash( 'message', 'Item deleted!' );
-
+        $log_data=['action'=>'delete','item_id'=>$item->id,'item_type'=>'category',
+            'user_id'=>$sessionUser->id,'item_data'=>$item->toJson()];
+        Logs::create($log_data);
         return Redirect::to( action( 'CategoryController@getIndex' ) );
     }
 }

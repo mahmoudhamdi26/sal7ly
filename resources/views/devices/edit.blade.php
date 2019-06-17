@@ -42,82 +42,56 @@
                             <br>
                             <div class="row">
                                 <form class="" role="form" enctype="multipart/form-data"
-                                      method="POST" action="{{ action('ServicesController@postUpdate', $model->id) }}">
+                                      method="POST" action="{{ action('DeviceTypeController@postUpdate', $model->id) }}">
                                     {!! csrf_field() !!}
                                     <div class="col-md-8 col-sm-8 col-xs-8">
 
+
                                         <div class="form-group">
-                                            <label class="form-label ">{{ trans('labels.name') }}</label>
-                                            <span class="help">e.g. "ثلاجات"</span>
+                                            <label class="form-label ">{{ trans('labels.company') }}</label>
+                                            <span class="help">e.g. "توشيبا"</span>
                                             <div class="controls">
-                                                <input type="text" class="form-control" name="name"
-                                                       value="{{ $model->name }}"
+                                                <input type="text" class="form-control" name="company"
+                                                       value="{{ $model->company }}"
                                                        required="">
 
-                                                @if ($errors->has('name'))
+                                                @if ($errors->has('company'))
                                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('company') }}</strong>
                                     </span>
                                                 @endif
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="form-label ">{{ trans('labels.category') }}</label>
+                                            <label class="form-label ">{{ trans('labels.service') }}</label>
                                             {{--<span class="help">e.g. "سباكة "</span>--}}
                                             <div class="controls">
-                                                <select name="category_id" class="form-control" required>
-                                                    @foreach($cats as $cat)
-                                                        <option value="{{$cat->id}}"
-                                                                @if($model->category_id==$cat->id)
+                                                <select name="service_id" class="form-control" required>
+                                                    @foreach($services as $service)
+                                                        <option value="{{$service->id}}"
+                                                                @if($model->service_id==$service->id)
                                                                 selected
                                                                 @endif
-                                                        >{{$cat->name}}</option>
+                                                        >{{$service->name}}</option>
                                                     @endforeach
                                                 </select>
 
-                                                @if ($errors->has('category_id'))
+                                                @if ($errors->has('service_id'))
                                                     <span class="help-block">
-                                                        <strong>{{ $errors->first('category_id') }}</strong>
+                                                        <strong>{{ $errors->first('service_id') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label class="form-label ">{{ trans('labels.desc') }}</label>
-                                            {{--<span class="help">e.g. "سباكة "</span>--}}
-                                            <div class="controls">
-                                                {{--                                                <input type="textarea" class="form-control" name="name"--}}
-                                                {{--                                                       value="{{ old('desc') }}"--}}
-                                                {{--                                                       required="">--}}
-                                                <textarea name="desc" class="form-control">{{$model->desc}}</textarea>
-                                                @if ($errors->has('desc'))
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('desc') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="form-label ">{{ trans('labels.icon') }}</label>
-                                            <div class="controls">
-                                                <input type="file" name="icon" id="cat_icon">
-                                                @if ($errors->has('icon'))
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('icon') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
 
                                         <div class="form-actions">
                                             <div class="pull-right">
                                                 <button class="btn btn-success btn-cons" type="submit"><i
                                                             class="icon-ok"></i> Save
                                                 </button>
-                                                <a href="{{ action('ServicesController@getIndex') }}">
+                                                <a href="{{ action('DeviceTypeController@getIndex') }}">
                                                     <button class="btn btn-white btn-cons" type="button">Cancel</button>
                                                 </a>
                                             </div>
