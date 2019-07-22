@@ -42,7 +42,7 @@ class JobRequestController extends Controller
      */
     public function cats(Request $request)
     {
-        $cats = Category::orderBy('name')->get();
+        $cats = Category::orderBy('created_at','DESC')->get();
         return response()->json(['categories' => $cats]);
     }
 
@@ -54,7 +54,7 @@ class JobRequestController extends Controller
      */
     public function services(Request $request, $id)
     {
-        $services = Service::where('category_id', $id)->orderBy('name')->with('job_types', 'device_types')->get();
+        $services = Service::where('category_id', $id)->orderBy('created_at','DESC')->with('job_types', 'device_types')->get();
         return response()->json(['services' => $services]);
     }
 
