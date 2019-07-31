@@ -27,7 +27,7 @@ class FacebookController extends Controller
     {
         $fbToken = $request->token;
         $client = new Client();
-        $res = $client->get('https://graph.facebook.com/v2.12/me?fields=name,location,email&access_token=' . $fbToken);
+        $res = $client->get('https://graph.facebook.com/v2.12/me?fields=name,email&access_token=' . $fbToken);
         $code = $res->getStatusCode(); // 200
         $body = json_decode($res->getBody()->getContents());
         $user = User::where('facebook_id', $body->id)
@@ -38,9 +38,11 @@ class FacebookController extends Controller
                 'facebook_id' => $body->id,
                 'name' => $body->name,
                 'email' => $body->email,
-                'address' => $body->location->name,
                 'password' => Str::random(8),
             ]);
+        } else if ($user->facebook_id == null) {
+            $user->facebook_id = $body->id;
+            $user->save();
         }
         $token = JWTAuth::fromUser($user);
         return response()->json(compact('token', 'user'), $code);
